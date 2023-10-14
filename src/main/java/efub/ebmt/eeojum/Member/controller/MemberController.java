@@ -1,9 +1,6 @@
 package efub.ebmt.eeojum.Member.controller;
 
-import efub.ebmt.eeojum.Member.dto.RefreshTokenRequestDto;
-import efub.ebmt.eeojum.Member.dto.SignInRequestDto;
-import efub.ebmt.eeojum.Member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.Member.dto.SignUpRequestDto;
+import efub.ebmt.eeojum.Member.dto.*;
 import efub.ebmt.eeojum.Member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.Member.service.MemberService;
 import efub.ebmt.eeojum.Member.service.RefreshTokenService;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/auth")
-@Tag(name = "사용자 인증이 이루어지는 api입니다.", description = "JWT 토큰을 발급합니다.")
+@Tag(name = "유저 관련 API", description = "회원가입, 로그인/로그아웃, 토큰 재발급 기능을 제공합니다.")
 public class MemberController {
     private final MemberService memberService;
     private final TokenProvider tokenProvider;
