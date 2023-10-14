@@ -1,8 +1,11 @@
 package efub.ebmt.eeojum.Member.service;
 
+import efub.ebmt.eeojum.Member.domain.Information;
 import efub.ebmt.eeojum.Member.domain.Member;
 import efub.ebmt.eeojum.Member.domain.RefreshToken;
+import efub.ebmt.eeojum.Member.dto.InformationRequestDto;
 import efub.ebmt.eeojum.Member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.Member.repository.InformationRepository;
 import efub.ebmt.eeojum.Member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import efub.ebmt.eeojum.global.util.JwtUtil;
@@ -21,6 +24,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final InformationRepository informationRepository;
     private final RefreshTokenService refreshTokenService;
     private final BCryptPasswordEncoder encoder;
     private final TokenProvider tokenProvider;
@@ -83,6 +87,22 @@ public class MemberService {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
+    }
+
+    @Transactional
+    public void addInformation(Long memberId, InformationRequestDto infoDto) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new IllegalArgumentException("Member not found: " + memberId));
+
+        Information information = Information.builder()
+                .address(infoDto.getAddress())
+                .careerBreak(infoDto.getCareerBreak())
+                .prgStatus(infoDto.isPrgStatus())
+                .desiredSalary(infoDto.getDesiredSalary())
+                .member(member)
+                .build();
+
+        informationRepository.save(information);
     }
 
 //    public SignInResponseDto requestRefresh(String refreshToken) {

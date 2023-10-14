@@ -14,26 +14,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@RequiredArgsConstructor
 @Slf4j
 public class JwtFilter extends OncePerRequestFilter {
+    private static final String BEARER = "Bearer ";
     private final String secretKey;
+    public JwtFilter(String secretKey) {
+        this.secretKey = secretKey;
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
 
         String token = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (token != null && token.startsWith("Bearer")) {
-            token = token.replace("Bearer", "");
+        if (token != null && token.startsWith(BEARER)) {
             try {
-                String userId = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
-                if (userId != null) {
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userId, null, null);
+                token = token.replace(BEARER, "").trim();
+                log.info("Extracted Token: {}", token);
+                String memberId = Jwts.parser()
+                        .setSigningKey(secretKey)
+                        .parseClaimsJws(token)
+                        .getBody()
+                        .get("memberId").toString();
+                log.info("Extracted MemberId: {}", memberId);
+
+                if (memberId != null && !memberId.trim().isEmpty()) {
+                    UsernamePasswordAuthenticationToken authentication =
+                            new UsernamePasswordAuthenticationToken(memberId, null, null);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             } catch (Exception e) {
-                log.error(e.getMessage());
+                log.error("Token processing error", e);
             }
         }
         filterChain.doFilter(request, response);
