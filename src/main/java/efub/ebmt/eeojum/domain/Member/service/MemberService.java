@@ -29,12 +29,6 @@ public class MemberService {
     private final BCryptPasswordEncoder encoder;
     private final TokenProvider tokenProvider;
 
-    @Transactional(readOnly = true)
-    public Member findMemberByEmail(String email) {
-        return memberRepository.findMemberByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("email" + email + "은 존재하지 않습니다!"));
-    }
-
     // 회원가입
     public String signUp(String name, String email, String pw, Date birth, String nickname) {
         if (memberRepository.existsByEmail(email)) {
@@ -104,29 +98,4 @@ public class MemberService {
 
         informationRepository.save(information);
     }
-
-//    public SignInResponseDto requestRefresh(String refreshToken) {
-//        // 유효성 검사
-//        RefreshToken foundRefreshToken = refreshTokenService.findRefreshToken(refreshToken);
-//
-//        // Refresh Token에 들어있는 email 값 조회
-//        Claims claims = JwtUtil.parseRefreshToken(foundRefreshToken.getValue(), refreshKey);
-//        String email = claims.get("email", String.class);
-//        System.out.println("Email found in RefreshToken: " + email);
-//
-//        // 회원 조회
-//        Member member = findMemberByEmail(email);
-//
-//        // 새 Access Token 생성
-//        String accessToken = JwtUtil.createAccessToken(member.getEmail(), accessKey, expiredTime);
-//
-//        // 새 Access Token과 기존 Refresh Token을 DTO에 담아 반환
-//        return SignInResponseDto
-//                .builder()
-//                .memberId(member.getMemberId())
-//                .email(member.getEmail())
-//                .accessToken(accessToken)
-//                .refreshToken(refreshToken)
-//                .build();
-//    }
 }

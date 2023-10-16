@@ -37,6 +37,10 @@ public class Member {
     @Column(name = "is_mentor")
     private boolean isMentor;
 
+    public Member update(String name) {
+        this.name = name;
+        return this;
+    }
     @Builder
     public Member(String name, String email, String pw, String nickname, Date birth, boolean isMentor) {
         this.name = name;
