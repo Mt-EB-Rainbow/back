@@ -1,4 +1,4 @@
-package efub.ebmt.eeojum.Member.dto;
+package efub.ebmt.eeojum.domain.Member.dto;
 
 import lombok.AccessLevel;
 import lombok.Builder;

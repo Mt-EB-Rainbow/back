@@ -1,4 +1,4 @@
-package efub.ebmt.eeojum.Member.domain;
+package efub.ebmt.eeojum.domain.Member.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

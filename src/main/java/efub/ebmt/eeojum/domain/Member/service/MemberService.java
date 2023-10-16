@@ -1,17 +1,14 @@
-package efub.ebmt.eeojum.Member.service;
+package efub.ebmt.eeojum.domain.Member.service;
 
-import efub.ebmt.eeojum.Member.domain.Information;
-import efub.ebmt.eeojum.Member.domain.Member;
-import efub.ebmt.eeojum.Member.domain.RefreshToken;
-import efub.ebmt.eeojum.Member.dto.InformationRequestDto;
-import efub.ebmt.eeojum.Member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.Member.repository.InformationRepository;
-import efub.ebmt.eeojum.Member.repository.MemberRepository;
+import efub.ebmt.eeojum.domain.Member.domain.Information;
+import efub.ebmt.eeojum.domain.Member.domain.Member;
+import efub.ebmt.eeojum.domain.Member.domain.RefreshToken;
+import efub.ebmt.eeojum.domain.Member.dto.InformationRequestDto;
+import efub.ebmt.eeojum.domain.Member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.domain.Member.repository.InformationRepository;
+import efub.ebmt.eeojum.domain.Member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
-import efub.ebmt.eeojum.global.util.JwtUtil;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

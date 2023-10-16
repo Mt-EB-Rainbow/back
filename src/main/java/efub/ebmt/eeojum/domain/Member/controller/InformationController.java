@@ -1,7 +1,7 @@
-package efub.ebmt.eeojum.Member.controller;
+package efub.ebmt.eeojum.domain.Member.controller;
 
-import efub.ebmt.eeojum.Member.dto.InformationRequestDto;
-import efub.ebmt.eeojum.Member.service.MemberService;
+import efub.ebmt.eeojum.domain.Member.dto.InformationRequestDto;
+import efub.ebmt.eeojum.domain.Member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

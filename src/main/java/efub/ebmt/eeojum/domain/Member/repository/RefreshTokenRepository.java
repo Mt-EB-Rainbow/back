@@ -1,6 +1,6 @@
-package efub.ebmt.eeojum.Member.repository;
+package efub.ebmt.eeojum.domain.Member.repository;
 
-import efub.ebmt.eeojum.Member.domain.RefreshToken;
+import efub.ebmt.eeojum.domain.Member.domain.RefreshToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
