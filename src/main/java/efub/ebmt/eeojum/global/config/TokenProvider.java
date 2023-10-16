@@ -38,7 +38,7 @@ public class TokenProvider {
     public String refreshAccessToken(String refreshToken) {
         try {
             // Refresh Token 검증
-            if (!validateToken(refreshToken)) {
+            if (!validateToken(refreshToken, refreshKey)) {
                 throw new SecurityException("유효하지 않은 refresh token");
             }
 
@@ -59,9 +59,9 @@ public class TokenProvider {
         return claims.get("memberId", Long.class);
     }
 
-    public boolean validateToken(String token) {
+    public boolean validateToken(String token, String keyToUse) {
         try {
-            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            Jwts.parserBuilder().setSigningKey(keyToUse).build().parseClaimsJws(token);
             return true;
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             logger.info("잘못된 JWT 서명입니다.");
