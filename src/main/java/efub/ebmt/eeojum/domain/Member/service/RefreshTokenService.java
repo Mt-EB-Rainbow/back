@@ -1,7 +1,7 @@
-package efub.ebmt.eeojum.domain.Member.service;
+package efub.ebmt.eeojum.domain.member.service;
 
-import efub.ebmt.eeojum.domain.Member.domain.RefreshToken;
-import efub.ebmt.eeojum.domain.Member.repository.RefreshTokenRepository;
+import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
+import efub.ebmt.eeojum.domain.member.repository.RefreshTokenRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

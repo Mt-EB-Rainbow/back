@@ -1,12 +1,12 @@
-package efub.ebmt.eeojum.domain.Member.service;
+package efub.ebmt.eeojum.domain.member.service;
 
-import efub.ebmt.eeojum.domain.Member.domain.Information;
-import efub.ebmt.eeojum.domain.Member.domain.Member;
-import efub.ebmt.eeojum.domain.Member.domain.RefreshToken;
-import efub.ebmt.eeojum.domain.Member.dto.InformationRequestDto;
-import efub.ebmt.eeojum.domain.Member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.domain.Member.repository.InformationRepository;
-import efub.ebmt.eeojum.domain.Member.repository.MemberRepository;
+import efub.ebmt.eeojum.domain.member.domain.Information;
+import efub.ebmt.eeojum.domain.member.domain.Member;
+import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
+import efub.ebmt.eeojum.domain.member.dto.InformationRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.domain.member.repository.InformationRepository;
+import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
