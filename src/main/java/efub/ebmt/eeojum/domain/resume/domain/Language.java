@@ -1,9 +1,15 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Language {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
