@@ -1,9 +1,9 @@
-package efub.ebmt.eeojum.domain.Member.controller;
+package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.Member.dto.OAuthResponseDto;
-import efub.ebmt.eeojum.domain.Member.oauth.GoogleOAuth;
-import efub.ebmt.eeojum.domain.Member.oauth.KakaoOAuth;
-import efub.ebmt.eeojum.domain.Member.service.OAuthService;
+import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
+import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
+import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
+import efub.ebmt.eeojum.domain.member.service.OAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

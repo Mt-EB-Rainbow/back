@@ -1,6 +1,6 @@
-package efub.ebmt.eeojum.domain.Member.service;
+package efub.ebmt.eeojum.domain.member.service;
 
-import efub.ebmt.eeojum.domain.Member.domain.Member;
+import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.global.config.OAuthPlatform;
 
 public interface OAuthSignInService {
