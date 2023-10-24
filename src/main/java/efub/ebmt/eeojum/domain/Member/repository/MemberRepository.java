@@ -1,6 +1,6 @@
-package efub.ebmt.eeojum.domain.Member.repository;
+package efub.ebmt.eeojum.domain.member.repository;
 
-import efub.ebmt.eeojum.domain.Member.domain.Member;
+import efub.ebmt.eeojum.domain.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
