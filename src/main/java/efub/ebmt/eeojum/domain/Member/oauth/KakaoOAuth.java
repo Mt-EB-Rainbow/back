@@ -1,9 +1,9 @@
-package efub.ebmt.eeojum.domain.Member.oauth;
+package efub.ebmt.eeojum.domain.member.oauth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import efub.ebmt.eeojum.domain.Member.dto.kakao.KakaoOAuthTokenDto;
-import efub.ebmt.eeojum.domain.Member.dto.kakao.KakaoUserInfoDto;
+import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
+import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoUserInfoDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

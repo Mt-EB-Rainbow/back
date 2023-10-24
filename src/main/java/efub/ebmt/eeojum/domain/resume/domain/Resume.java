@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,5 +24,9 @@ public class Resume {
 
     @Enumerated(EnumType.STRING)
     private ResumeStatus resumeStatus;
+
+    private LocalDateTime createdAt;
+
+    private LocalDateTime updatedAt;
 
 }

@@ -1,9 +1,9 @@
-package efub.ebmt.eeojum.domain.Member.oauth;
+package efub.ebmt.eeojum.domain.member.oauth;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import efub.ebmt.eeojum.domain.Member.dto.google.GoogleOAuthTokenDto;
-import efub.ebmt.eeojum.domain.Member.dto.google.GoogleUserInfoDto;
+import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
+import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
