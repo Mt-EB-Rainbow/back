@@ -1,6 +1,7 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,7 @@ public class Education {
     private Long educationId;
 
     @Column(nullable = false)
-    private Integer resumeId;
+    private Long resumeId;
 
     @Column(nullable = false)
     private LocalDateTime startDate;
@@ -36,4 +37,15 @@ public class Education {
 
     @Column
     private String degree;
+
+    @Builder
+    public Education(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, EducationStatus educationStatus, String name, String major, String degree){
+        this.resumeId = resumeId;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.educationStatus = educationStatus;
+        this.name = name;
+        this.major = major;
+        this.degree = degree;
+    }
 }
