@@ -1,4 +1,4 @@
-package efub.ebmt.eeojum.domain.Member.dto.google;
+package efub.ebmt.eeojum.domain.member.dto.google;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,16 +1,15 @@
-package efub.ebmt.eeojum.domain.Member.service;
+package efub.ebmt.eeojum.domain.member.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import efub.ebmt.eeojum.domain.Member.domain.Member;
-import efub.ebmt.eeojum.domain.Member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.domain.Member.dto.google.GoogleOAuthTokenDto;
-import efub.ebmt.eeojum.domain.Member.dto.google.GoogleUserInfoDto;
-import efub.ebmt.eeojum.domain.Member.dto.kakao.KakaoOAuthTokenDto;
-import efub.ebmt.eeojum.domain.Member.dto.kakao.KakaoUserInfoDto;
-import efub.ebmt.eeojum.domain.Member.dto.OAuthResponseDto;
-import efub.ebmt.eeojum.domain.Member.oauth.GoogleOAuth;
-import efub.ebmt.eeojum.domain.Member.oauth.KakaoOAuth;
-import efub.ebmt.eeojum.domain.Member.repository.MemberRepository;
+import efub.ebmt.eeojum.domain.member.domain.Member;
+import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
+import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
+import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
+import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoUserInfoDto;
+import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
+import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
+import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
+import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.OAuthPlatform;
 import efub.ebmt.eeojum.global.config.RedisDao;
 import efub.ebmt.eeojum.global.config.TokenProvider;

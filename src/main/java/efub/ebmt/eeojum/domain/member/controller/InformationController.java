@@ -1,4 +1,4 @@
-package efub.ebmt.eeojum.domain.Member.controller;
+package efub.ebmt.eeojum.domain.member.controller;
 
 import efub.ebmt.eeojum.domain.member.dto.InformationRequestDto;
 import efub.ebmt.eeojum.domain.member.service.MemberService;
