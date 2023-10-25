@@ -2,7 +2,6 @@ package efub.ebmt.eeojum.domain.member.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import efub.ebmt.eeojum.domain.member.domain.Member;
-import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
 import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
