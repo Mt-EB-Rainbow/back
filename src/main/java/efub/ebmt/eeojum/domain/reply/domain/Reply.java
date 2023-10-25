@@ -1,6 +1,5 @@
 package efub.ebmt.eeojum.domain.reply.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.question.domain.Question;
 import efub.ebmt.eeojum.domain.reply.dto.ReplyUpdateRequestDto;
@@ -26,7 +25,6 @@ public class Reply extends BaseTimeEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id")
-    @JsonIgnoreProperties({"replies"}) // replies는 Question 엔터티의 컬렉션 필드 이름일 수 있음
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Question question;
 
