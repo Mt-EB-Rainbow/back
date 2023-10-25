@@ -26,9 +26,7 @@ public class ResumeService {
     private final LanguageRepository languageRepository;
     private final AwardRepository awardRepository;
 
-    public void addResume(ResumeRequest resumeRequest){
-        Resume resume = resumeRepository.save(resumeRequest.of());
-    }
+    public void addResume(ResumeRequest resumeRequest){Resume resume = resumeRepository.save(resumeRequest.of());}
 
     public void modifyResume(ResumeUpdateRequest resumeUpdateRequest){
         educationRepository.saveAll(resumeUpdateRequest.getEducations());

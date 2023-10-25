@@ -44,7 +44,6 @@ public class OAuthService {
     private final RedisDao redisDao;
     UsernamePasswordAuthenticationToken authenticationToken = null;
 
-
     private ResponseEntity<OAuthResponseDto> SignInByOAuth(String email, OAuthPlatform platform) {
 
         if (platform.equals(OAuthPlatform.KAKAO)) {
