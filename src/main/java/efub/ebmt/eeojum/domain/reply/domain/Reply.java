@@ -8,6 +8,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -36,14 +37,32 @@ public class Reply extends BaseTimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
+    @Column(nullable = false)
+    @ColumnDefault("false") // false면 좋아요 누르지 않은 상태
+    public boolean likeStatus;
+
+    @Column(nullable = false)
+    @ColumnDefault("0")
+    private Long replyLikeCount;
+
     @Builder
-    public Reply(Question question, Member writer, String contents) {
+    public Reply(Question question, Member writer, String contents, boolean likeStatus, Long replyLikeCount) {
         this.question = question;
         this.writer = writer;
         this.contents = contents;
+        this.likeStatus = likeStatus;
+        this.replyLikeCount = replyLikeCount;
     }
 
     public void updateReply(ReplyUpdateRequestDto requestDto){
         this.contents = requestDto.getContents();
+    }
+
+    public void updateLikeCount(Long newReplyLikeCount){
+        this.replyLikeCount = newReplyLikeCount;
+    }
+
+    public void updateLike(boolean newReplyLikeStatus){
+        this.likeStatus = newReplyLikeStatus;
     }
 }

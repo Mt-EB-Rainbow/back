@@ -83,7 +83,7 @@ public class MemberService {
     @Transactional
     public void addInformation(Long memberId, InformationRequestDto infoDto) {
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("Member not found: " + memberId));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 멤버입니다. ID : " + memberId));
 
         Information information = Information.builder()
                 .address(infoDto.getAddress())
@@ -94,5 +94,11 @@ public class MemberService {
                 .build();
 
         informationRepository.save(information);
+    }
+
+    @Transactional(readOnly = true)
+    public Member findById(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 멤버입니다. ID : " + memberId));
     }
 }
