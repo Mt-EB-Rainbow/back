@@ -1,6 +1,7 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,7 @@ public class Experience {
     private Long experienceId;
 
     @Column(nullable = false)
-    private Integer resumeId;
+    private Long resumeId;
 
     @Column(nullable = false)
     private LocalDateTime startDate;
@@ -33,4 +34,14 @@ public class Experience {
 
     @Column
     private String position;
+
+    @Builder
+    public Experience(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, Boolean isPresent, String department, String position){
+        this.resumeId = resumeId;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.isPresent = isPresent;
+        this.department = department;
+        this.position = position;
+    }
 }

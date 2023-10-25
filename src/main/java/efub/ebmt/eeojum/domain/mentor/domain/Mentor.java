@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class Mentor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "mentor_id")
     private Long mentorId;
 
     @Column(nullable = false)
