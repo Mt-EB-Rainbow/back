@@ -2,7 +2,9 @@ package efub.ebmt.eeojum.domain.resume.controller;
 
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeRequest;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
+import efub.ebmt.eeojum.domain.resume.dto.response.ResumeDetailResponse;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumeResponse;
+import efub.ebmt.eeojum.domain.resume.dto.response.ResumesResponse;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,9 +29,15 @@ public class ResumeController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping
+    public ResponseEntity<ResumesResponse> resumeList(){
+        ResumesResponse resumesResponse = resumeService.findAllResume();
+        return new ResponseEntity<ResumesResponse>(HttpStatus.OK);
+    }
+
     @GetMapping("/{resumeId}")
-    public ResponseEntity<ResumeResponse> resumeDetails(@PathVariable Long resumeId){
-        ResumeResponse resumeResponse = resumeService.findResume(resumeId);
-        return new ResponseEntity<ResumeResponse>(HttpStatus.OK);
+    public ResponseEntity<ResumeDetailResponse> resumeDetails(@PathVariable Long resumeId){
+        ResumeDetailResponse resumeDetailResponse = resumeService.findResume(resumeId);
+        return new ResponseEntity<ResumeDetailResponse>(HttpStatus.OK);
     }
 }
