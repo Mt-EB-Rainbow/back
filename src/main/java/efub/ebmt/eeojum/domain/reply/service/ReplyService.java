@@ -75,4 +75,11 @@ public class ReplyService {
 
         replyRepository.delete(comment);
     }
+
+    // 메서드
+    @Transactional(readOnly = true)
+    public Reply findById(Long replyId) {
+        return replyRepository.findById(replyId)
+                .orElseThrow(()->new EntityNotFoundException("댓글을 찾을 수 없습니다. ID = " + replyId));
+    }
 }
