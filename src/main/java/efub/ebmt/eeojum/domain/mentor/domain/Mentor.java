@@ -8,28 +8,28 @@ public class Mentor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mentor_id")
-    private Long mentorId;
+    private Long mentor_id;
 
     @Column(nullable = false)
-    private Long memberId;
+    private Long member_id;
 
     @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false)
-    private String jobCategory;
+    private String job_category;
 
     @Column(nullable = false)
-    private LocalDateTime hiredDate;
+    private LocalDateTime hired_date;
 
     @Column
-    private String phoneNumber;
+    private String phone_number;
 
     @Column
-    private String Email;
+    private String email;
 
     @Column
-    private Long KakaoUserid;
+    private Long kakao_userid;
 
     @Column
     private String introduction;
