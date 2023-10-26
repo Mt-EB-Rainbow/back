@@ -11,7 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -67,5 +70,15 @@ public class ReplyController {
     public String deleteReply(@PathVariable Long replyId) {
         replyService.deleteReply(replyId);
         return "댓글이 삭제되었습니다.";
+    }
+
+    @GetMapping("/question/{questionId}/best")
+    @ResponseStatus(value = HttpStatus.OK)
+    @Operation(summary = "특정 게시글에 달린 댓글 중 가장 좋아요를 많이 받은 댓글을 반환하는 API입니다.")
+    public List<ReplyResponseDto> getBestReplyByQuestion(@PathVariable Long questionId) {
+        Optional<Reply> bestReplyOptional = replyService.findBestReplyByQuestion(questionId);
+
+        return bestReplyOptional.map(reply -> Arrays.asList(new ReplyResponseDto(reply)))
+                .orElse(Collections.emptyList());
     }
 }
