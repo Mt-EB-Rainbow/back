@@ -1,6 +1,7 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,14 +11,14 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Awards {
+public class Award {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long awardsId;
 
     @Column(nullable = false)
-    private Integer resumeId;
+    private Long resumeId;
 
     @Column(nullable = false)
     private LocalDateTime startDate;
@@ -30,5 +31,14 @@ public class Awards {
 
     @Column
     private String content;
+
+    @Builder
+    public Award(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, String activity, String content){
+        this.resumeId = resumeId;
+        this.startDate = startDate;
+        this.finishDate = finishDate;
+        this.activity = activity;
+        this.content = content;
+    }
 
 }
