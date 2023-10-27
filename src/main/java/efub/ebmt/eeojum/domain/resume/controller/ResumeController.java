@@ -3,7 +3,6 @@ package efub.ebmt.eeojum.domain.resume.controller;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeRequest;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumeDetailResponse;
-import efub.ebmt.eeojum.domain.resume.dto.response.ResumeResponse;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumesResponse;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +38,11 @@ public class ResumeController {
     public ResponseEntity<ResumeDetailResponse> resumeDetails(@PathVariable Long resumeId){
         ResumeDetailResponse resumeDetailResponse = resumeService.findResume(resumeId);
         return new ResponseEntity<ResumeDetailResponse>(HttpStatus.OK);
+    }
+
+    @GetMapping("/{memberId}")
+    public ResponseEntity<ResumesResponse> resumeListByMember(@PathVariable Long memberId){
+        ResumesResponse resumesResponse = resumeService.findResumeByMember(memberId);
+        return new ResponseEntity<ResumesResponse>(HttpStatus.OK);
     }
 }

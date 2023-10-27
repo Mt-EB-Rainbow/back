@@ -49,4 +49,10 @@ public class ResumeService {
                 .map(ResumeResponse::new)
                 .collect(Collectors.toList()));
     }
+
+    public ResumesResponse findResumeByMember(Long memberId){
+        return new ResumesResponse(resumeRepository.findByMemberId(memberId).stream()
+                .map(ResumeResponse::new)
+                .collect(Collectors.toList()));
+    }
 }
