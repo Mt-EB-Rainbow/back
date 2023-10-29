@@ -7,4 +7,5 @@ import java.util.List;
 public interface MentorService {
     List<MentorDto> registerMentor(MentorDto mentorDTO);
     List<MentorDto> getMentorList();
+    List<MentorDto> getTopMatchingMentors(MentorDto userMentorDto, int limit);
 }
