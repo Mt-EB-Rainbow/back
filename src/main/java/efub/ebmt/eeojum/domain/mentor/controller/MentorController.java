@@ -1,15 +1,13 @@
 package efub.ebmt.eeojum.domain.mentor.controller;
 
 import efub.ebmt.eeojum.domain.mentor.dto.MentorRequest;
+import efub.ebmt.eeojum.domain.mentor.dto.MentorsResponse;
 import efub.ebmt.eeojum.domain.mentor.service.MentorService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.http.HttpResponse;
-import java.util.List;
 
 @RestController
 @RequestMapping("/mentors")
@@ -21,6 +19,11 @@ public class MentorController {
     public ResponseEntity<String> mentorAdd(@RequestBody MentorRequest mentorRequest) {
         mentorService.addMentor(mentorRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping
+    public MentorsResponse mentorList(){
+        return mentorService.findMentorList();
     }
 
 }

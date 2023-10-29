@@ -1,11 +1,16 @@
 package efub.ebmt.eeojum.domain.mentor.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
 public class Mentor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,17 +43,4 @@ public class Mentor {
 
     @Column
     private String company;
-
-    @Builder
-    public Mentor(String nickname, String jobCategory, LocalDateTime hiredDate,
-                  String phoneNumber, String email, Long kakaoUserid, String introduction, String company) {
-        this.nickname = nickname;
-        this.email = email;
-        this.jobCategory = jobCategory;
-        this.hiredDate = hiredDate;
-        this.phoneNumber =phoneNumber;
-        this.kakaoUserid = kakaoUserid;
-        this.introduction = introduction;
-        this.company = company;
-    }
 }
