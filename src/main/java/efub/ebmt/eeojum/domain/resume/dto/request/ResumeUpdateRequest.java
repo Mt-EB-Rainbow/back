@@ -10,7 +10,6 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ResumeUpdateRequest {
-    private Long resumeId;
     private String title;
     private String introduction;
     private ResumeStatus resumeStatus;

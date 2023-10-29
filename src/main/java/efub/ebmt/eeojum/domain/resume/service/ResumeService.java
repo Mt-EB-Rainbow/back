@@ -28,7 +28,7 @@ public class ResumeService {
 
     public void addResume(ResumeRequest resumeRequest){Resume resume = resumeRepository.save(resumeRequest.of());}
 
-    public void modifyResume(ResumeUpdateRequest resumeUpdateRequest){
+    public void modifyResume(Long resumeId, ResumeUpdateRequest resumeUpdateRequest){
         educationRepository.saveAll(resumeUpdateRequest.getEducations());
         experienceRepository.saveAll(resumeUpdateRequest.getExperiences());
         languageRepository.saveAll(resumeUpdateRequest.getLanguages());

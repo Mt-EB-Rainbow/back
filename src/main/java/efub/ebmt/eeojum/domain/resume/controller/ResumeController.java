@@ -22,9 +22,9 @@ public class ResumeController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<String> resumeSave(@RequestBody ResumeUpdateRequest resumeUpdateRequest){
-        resumeService.modifyResume(resumeUpdateRequest);
+    @PostMapping("/{resumeId}")
+    public ResponseEntity<String> resumeSave(@PathVariable Long resumeId, @RequestBody ResumeUpdateRequest resumeUpdateRequest){
+        resumeService.modifyResume(resumeId, resumeUpdateRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
