@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -74,5 +75,20 @@ public class ReplyService {
                 .orElseThrow(()->new EntityNotFoundException("존재하지 않는 댓글입니다. ID = " + replyId));
 
         replyRepository.delete(comment);
+    }
+
+    // 메서드
+    @Transactional(readOnly = true)
+    public Reply findById(Long replyId) {
+        return replyRepository.findById(replyId)
+                .orElseThrow(()->new EntityNotFoundException("댓글을 찾을 수 없습니다. ID = " + replyId));
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Reply> findBestReplyByQuestion(Long questionId) {
+        Question question = questionRepository.findById(questionId)
+                .orElseThrow(() -> new EntityNotFoundException("질문을 찾을 수 없습니다. ID = " + questionId));
+
+        return replyRepository.findTopByQuestionOrderByReplyLikeCountDesc(question);
     }
 }

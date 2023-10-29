@@ -1,7 +1,10 @@
 package efub.ebmt.eeojum.domain.mentor.domain;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 public class Mentor {
@@ -26,10 +29,10 @@ public class Mentor {
     private String phoneNumber;
 
     @Column
-    private String Email;
+    private String email;
 
     @Column
-    private Long KakaoUserid;
+    private Long kakaoUserid;
 
     @Column
     private String introduction;
@@ -37,4 +40,16 @@ public class Mentor {
     @Column
     private String company;
 
+    @Builder
+    public Mentor(String nickname, String jobCategory, LocalDateTime hiredDate,
+                  String phoneNumber, String email, Long kakaoUserid, String introduction, String company) {
+        this.nickname = nickname;
+        this.email = email;
+        this.jobCategory = jobCategory;
+        this.hiredDate = hiredDate;
+        this.phoneNumber =phoneNumber;
+        this.kakaoUserid = kakaoUserid;
+        this.introduction = introduction;
+        this.company = company;
+    }
 }
