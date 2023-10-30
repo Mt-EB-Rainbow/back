@@ -43,4 +43,18 @@ public class Mentor {
 
     @Column
     private String company;
+
+    @Builder
+    public Mentor(Long memberId, String nickname, String jobCategory, LocalDateTime hiredDate,
+                  String phoneNumber, String email, Long kakaoUserid, String introduction, String company) {
+        this.memberId = memberId;
+        this.nickname = nickname;
+        this.email = email;
+        this.jobCategory = jobCategory;
+        this.hiredDate = hiredDate;
+        this.phoneNumber =phoneNumber;
+        this.kakaoUserid = kakaoUserid;
+        this.introduction = introduction;
+        this.company = company;
+    }
 }

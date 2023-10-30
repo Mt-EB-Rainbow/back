@@ -14,10 +14,8 @@ import javax.validation.constraints.NotNull;
 public class ResumeRequest {
     @NotNull
     private Long memberId;
-
     @NotBlank(message = "제목은 필수로 입력되어야 합니다.")
     private String title;
-
     private String introduction;
     private ResumeStatus resumeStatus;
 
