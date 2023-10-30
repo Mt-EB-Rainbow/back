@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.feedback.domain;
 
+import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackUpdateRequest;
 import efub.ebmt.eeojum.global.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -51,5 +52,14 @@ public class Feedback extends BaseTimeEntity {
         this.experience = experience;
         this.language = language;
         this.awards = awards;
+    }
+
+    public void updateFeedback(FeedbackUpdateRequest feedbackUpdateRequest){
+        this.overall = feedbackUpdateRequest.getOverall();
+        this.title = feedbackUpdateRequest.getTitle();
+        this.education = feedbackUpdateRequest.getEducation();
+        this.experience = feedbackUpdateRequest.getExperience();
+        this.language = feedbackUpdateRequest.getLanguage();
+        this.awards = feedbackUpdateRequest.getAwards();
     }
 }
