@@ -37,20 +37,20 @@ public class ResumeController {
     @Operation(summary = "이력서 전체 조회 API입니다.")
     public ResponseEntity<ResumesResponse> resumeList(){
         ResumesResponse resumesResponse = resumeService.findAllResume();
-        return new ResponseEntity<ResumesResponse>(HttpStatus.OK);
+        return new ResponseEntity<>(resumesResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{resumeId}")
     @Operation(summary = "이력서 상세 조회 API입니다.")
     public ResponseEntity<ResumeDetailResponse> resumeDetails(@PathVariable Long resumeId){
         ResumeDetailResponse resumeDetailResponse = resumeService.findResume(resumeId);
-        return new ResponseEntity<ResumeDetailResponse>(HttpStatus.OK);
+        return new ResponseEntity<>(resumeDetailResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{memberId}")
     @Operation(summary = "이력서 멤버 별 조회 API입니다.")
     public ResponseEntity<ResumesResponse> resumeListByMember(@PathVariable Long memberId){
         ResumesResponse resumesResponse = resumeService.findResumeByMember(memberId);
-        return new ResponseEntity<ResumesResponse>(HttpStatus.OK);
+        return new ResponseEntity<>(resumesResponse, HttpStatus.OK);
     }
 }

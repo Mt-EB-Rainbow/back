@@ -23,13 +23,14 @@ public class MentorController {
     @Operation(summary = "멘토를 생성합니다.")
     public ResponseEntity<MentorResponse> mentorAdd(@RequestBody MentorRequest mentorRequest) {
         MentorResponse mentorresponse = mentorService.addMentor(mentorRequest);
-        return new ResponseEntity<MentorResponse>(HttpStatus.CREATED);
+        return new ResponseEntity<>(mentorresponse, HttpStatus.CREATED);
     }
 
     @GetMapping
     @Operation(summary = "멘토 리스트를 조회합니다.")
-    public MentorsResponse mentorList(){
-        return mentorService.findMentorList();
+    public ResponseEntity<MentorsResponse> mentorList(){
+        MentorsResponse mentorsResponse = mentorService.findMentorList();
+        return new ResponseEntity<>(mentorsResponse, HttpStatus.OK);
     }
 
 }
