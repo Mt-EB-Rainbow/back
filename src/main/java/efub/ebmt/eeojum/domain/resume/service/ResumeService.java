@@ -2,6 +2,7 @@ package efub.ebmt.eeojum.domain.resume.service;
 
 import efub.ebmt.eeojum.domain.resume.domain.*;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeRequest;
+import efub.ebmt.eeojum.domain.resume.dto.request.ResumeStatusRequest;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumeDetailResponse;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumeResponse;
@@ -49,6 +50,12 @@ public class ResumeService {
         return new ResumeResponse(resume);
     }
 
+    public ResumeResponse modifyResumeStatus(Long resumeId, ResumeStatusRequest resumeStatusRequest){
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow(() -> new CustomException(ErrorCode.RESUME_NOT_FOUND));
+        resume.updateResumeStatus(resumeStatusRequest.getResumeStatus());
+        return new ResumeResponse(resume);
+    }
+
     public ResumeDetailResponse findResume(Long resumeId){
         Resume resume = resumeRepository.findById(resumeId).orElseThrow(() -> new CustomException(ErrorCode.RESUME_NOT_FOUND));
         List<Education> educations = educationRepository.findByResumeId(resumeId);
@@ -66,6 +73,12 @@ public class ResumeService {
 
     public ResumesResponse findResumeByMember(Long memberId){
         return new ResumesResponse(resumeRepository.findByMemberId(memberId).stream()
+                .map(ResumeResponse::new)
+                .collect(Collectors.toList()));
+    }
+
+    public ResumesResponse findResumeByStatus(ResumeStatus resumeStatus){
+        return new ResumesResponse(resumeRepository.findByResumeStatus(resumeStatus).stream()
                 .map(ResumeResponse::new)
                 .collect(Collectors.toList()));
     }
