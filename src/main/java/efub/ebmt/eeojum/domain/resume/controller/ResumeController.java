@@ -3,6 +3,7 @@ package efub.ebmt.eeojum.domain.resume.controller;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeRequest;
 import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumeDetailResponse;
+import efub.ebmt.eeojum.domain.resume.dto.response.ResumeResponse;
 import efub.ebmt.eeojum.domain.resume.dto.response.ResumesResponse;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -20,17 +21,17 @@ public class ResumeController {
     private final ResumeService resumeService;
 
     @PostMapping
-    @Operation(summary = "이력서 생성 API입니다. 멤버 아이디, 제목, 소개를 입력해 이력서를 생성합니다.")
-    public ResponseEntity<String> resumeAdd(@RequestBody ResumeRequest resumeRequest) {
-        resumeService.addResume(resumeRequest);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @Operation(summary = "이력서 생성 API입니다. 멤버 아이디를 입력해 이력서를 생성합니다.")
+    public ResponseEntity<ResumeResponse> resumeAdd(@RequestBody ResumeRequest resumeRequest) {
+        ResumeResponse resumeResponse = resumeService.addResume(resumeRequest);
+        return new ResponseEntity<>(resumeResponse, HttpStatus.CREATED);
     }
 
     @PostMapping("/{resumeId}")
     @Operation(summary = "이력서 내용 작성 API입니다.")
-    public ResponseEntity<String> resumeSave(@PathVariable Long resumeId, @RequestBody ResumeUpdateRequest resumeUpdateRequest){
-        resumeService.modifyResume(resumeId, resumeUpdateRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<ResumeResponse> resumeSave(@PathVariable Long resumeId, @RequestBody ResumeUpdateRequest resumeUpdateRequest){
+        ResumeResponse resumeResponse = resumeService.modifyResume(resumeId, resumeUpdateRequest);
+        return new ResponseEntity<>(resumeResponse, HttpStatus.OK);
     }
 
     @GetMapping

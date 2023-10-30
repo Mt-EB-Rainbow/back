@@ -26,13 +26,27 @@ public class ResumeService {
     private final LanguageRepository languageRepository;
     private final AwardRepository awardRepository;
 
-    public void addResume(ResumeRequest resumeRequest){Resume resume = resumeRepository.save(resumeRequest.of());}
+    public ResumeResponse addResume(ResumeRequest resumeRequest){
+        Resume resume = resumeRepository.save(resumeRequest.of());
+        return new ResumeResponse(resume);
+    }
 
-    public void modifyResume(Long resumeId, ResumeUpdateRequest resumeUpdateRequest){
-        educationRepository.saveAll(resumeUpdateRequest.getEducations());
-        experienceRepository.saveAll(resumeUpdateRequest.getExperiences());
-        languageRepository.saveAll(resumeUpdateRequest.getLanguages());
-        awardRepository.saveAll(resumeUpdateRequest.getAwards());
+    public ResumeResponse modifyResume(Long resumeId, ResumeUpdateRequest resumeUpdateRequest){
+        Resume resume = resumeRepository.findById(resumeId).orElseThrow(() -> new CustomException(ErrorCode.RESUME_NOT_FOUND));
+        resume.updateResume(resumeUpdateRequest.getTitle(), resumeUpdateRequest.getIntroduction());
+        educationRepository.saveAll(resumeUpdateRequest.getEducations().stream()
+                .map(r -> r.of(resumeId))
+                .collect(Collectors.toList()));
+        experienceRepository.saveAll(resumeUpdateRequest.getExperiences().stream()
+                .map(r -> r.of(resumeId))
+                .collect(Collectors.toList()));
+        languageRepository.saveAll(resumeUpdateRequest.getLanguages().stream()
+                .map(r -> r.of(resumeId))
+                .collect(Collectors.toList()));
+        awardRepository.saveAll(resumeUpdateRequest.getAwards().stream()
+                .map(r -> r.of(resumeId))
+                .collect(Collectors.toList()));
+        return new ResumeResponse(resume);
     }
 
     public ResumeDetailResponse findResume(Long resumeId){
