@@ -17,6 +17,8 @@ public class Job {
 
     private String name; //직업명
 
+    private String categoryId; //카테고리
+
     private String hollandType1; //홀랜드유형1
 
     private String hollandType2; //홀랜드유형2
