@@ -13,23 +13,13 @@ import javax.persistence.Column;
 public class FeedbackRequest {
     private Long memberId;
     private Long resumeId;
-    private String overall;
-    private String title;
-    private String education;
-    private String experience;
-    private String language;
-    private String awards;
+    private String content;
 
     public Feedback of(){
         return Feedback.builder()
                 .memberId(memberId)
                 .resumeId(resumeId)
-                .overall(overall)
-                .title(title)
-                .education(education)
-                .experience(experience)
-                .language(language)
-                .awards(awards)
+                .content(content)
                 .build();
     }
 }
