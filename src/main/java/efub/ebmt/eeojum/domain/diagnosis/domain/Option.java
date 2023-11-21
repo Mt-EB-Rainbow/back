@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Table(name = "`option`")
 public class Option {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +18,6 @@ public class Option {
 
     private Long questionId;
 
+    @Column(name = "`option`")
     private String option;
 }
