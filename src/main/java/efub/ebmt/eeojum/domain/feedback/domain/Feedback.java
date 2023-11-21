@@ -25,4 +25,11 @@ public class Feedback extends BaseTimeEntity {
 
     @Column
     private String content;
+
+    @Builder
+    public Feedback(Long memberId, Long resumeId, String content){
+        this.memberId = memberId;
+        this.resumeId = resumeId;
+        this.content = content;
+    }
 }
