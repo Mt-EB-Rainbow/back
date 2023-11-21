@@ -1,6 +1,5 @@
-package efub.ebmt.eeojum.domain.feedback.domain;
+package efub.ebmt.eeojum.domain.diagnosis.domain;
 
-import efub.ebmt.eeojum.global.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,16 +9,11 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Feedback extends BaseTimeEntity {
+public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
-    private Long feedbackId;
+    private Long questionId;
 
-    @Column(nullable = false)
-    private Long resumeId;
-
-    @Column
-    private String content;
-
+    private String question;
 }
