@@ -1,29 +1,36 @@
 package efub.ebmt.eeojum.domain.mentor.controller;
 
-import efub.ebmt.eeojum.domain.mentor.dto.MentorDto;
+import efub.ebmt.eeojum.domain.mentor.dto.MentorRequest;
+import efub.ebmt.eeojum.domain.mentor.dto.MentorResponse;
+import efub.ebmt.eeojum.domain.mentor.dto.MentorsResponse;
 import efub.ebmt.eeojum.domain.mentor.service.MentorService;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/mentors")
+@RequiredArgsConstructor
+@Tag(name = "멘토 관련 API", description = "멘토 생성, 조회 기능을 제공합니다.")
 public class MentorController {
     private final MentorService mentorService;
 
-    @Autowired
-    public MentorController(MentorService mentorService) {
-        this.mentorService = mentorService;
+    @PostMapping
+    @Operation(summary = "멘토를 생성합니다.")
+    public ResponseEntity<MentorResponse> mentorAdd(@RequestBody MentorRequest mentorRequest) {
+        MentorResponse mentorresponse = mentorService.addMentor(mentorRequest);
+        return new ResponseEntity<>(mentorresponse, HttpStatus.CREATED);
     }
 
-    @PostMapping("/register")
-    public List<MentorDto> registerMentor(@RequestBody MentorDto mentorDTO) {
-        return mentorService.registerMentor(mentorDTO);
+    @GetMapping
+    @Operation(summary = "멘토 리스트를 조회합니다.")
+    public ResponseEntity<MentorsResponse> mentorList(){
+        MentorsResponse mentorsResponse = mentorService.findMentorList();
+        return new ResponseEntity<>(mentorsResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/list")
-    public List<MentorDto> getMentorList() {
-        return mentorService.getMentorList();
-    }
 }

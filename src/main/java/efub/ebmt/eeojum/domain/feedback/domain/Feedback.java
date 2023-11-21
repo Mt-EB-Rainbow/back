@@ -2,6 +2,7 @@ package efub.ebmt.eeojum.domain.feedback.domain;
 
 import efub.ebmt.eeojum.global.common.BaseTimeEntity;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,9 +18,11 @@ public class Feedback extends BaseTimeEntity {
     private Long feedbackId;
 
     @Column(nullable = false)
+    private Long memberId;
+
+    @Column(nullable = false)
     private Long resumeId;
 
     @Column
     private String content;
-
 }

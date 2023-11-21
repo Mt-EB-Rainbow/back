@@ -1,19 +1,15 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
 import efub.ebmt.eeojum.global.common.BaseTimeEntity;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
+@Builder
+@AllArgsConstructor
 public class Resume extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,27 +19,21 @@ public class Resume extends BaseTimeEntity {
     @Column(nullable = false)
     private Long memberId;
 
-    @Column(nullable = false)
-    private String title;
+    @Column(columnDefinition = "varchar(255) default '제목 없음'")
+    @Builder.Default
+    private String title = "제목 없음";
 
     @Column
     private String introduction;
 
     @Enumerated(EnumType.STRING)
-    private ResumeStatus resumeStatus;
+    @Column(columnDefinition = "varchar(255) default 'NOT_ASKED'")
+    @Builder.Default
+    private ResumeStatus resumeStatus = ResumeStatus.NOT_ASKED;
 
-    @Builder
-    public Resume(Long memberId, String title, String introduction, ResumeStatus resumeStatus){
-        this.memberId = memberId;
+    public void updateResume(String title, String introduction){
         this.title = title;
         this.introduction = introduction;
-        this.resumeStatus = resumeStatus;
-    }
-
-    public void updateResume(String title, String introduction, ResumeStatus resumeStatus){
-        this.title = title;
-        this.introduction = introduction;
-        this.resumeStatus = resumeStatus;
     }
 
     public void updateResumeStatus(ResumeStatus resumeStatus){
