@@ -24,6 +24,9 @@ import java.util.*;
 public class NurtureService {
 
     public NurturesResponse nurtureList(NurtureRequest nurtureRequest){
+        //테스트
+        System.out.println(System.getProperty("user.dir"));
+
         WebDriver driver = WebDriverUtil.getChromeDriver();
         List<NurtureResponse> nurturesResponse = new ArrayList<>();
         long pageCnt = 0L;
@@ -32,6 +35,7 @@ public class NurtureService {
         if (!ObjectUtils.isEmpty(driver)) {
             List<WebElement> webElementList = new ArrayList<>();
             driver.get(url);
+            //TODO: explicitly wait으로 수정 -> 속도 개선
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
             //자치구 선택

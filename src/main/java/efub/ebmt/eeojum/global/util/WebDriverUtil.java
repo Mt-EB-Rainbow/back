@@ -14,6 +14,8 @@ public class WebDriverUtil {
     private static String WEB_DRIVER_PATH;
 
     public static WebDriver getChromeDriver() {
+        System.out.println("1" + System.getProperty("user.dir"));
+
         if (ObjectUtils.isEmpty(System.getProperty("webdriver.chrome.driver"))) {
             System.setProperty("webdriver.chrome.driver", WEB_DRIVER_PATH);
         }
