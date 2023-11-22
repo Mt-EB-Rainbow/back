@@ -24,9 +24,6 @@ import java.util.*;
 public class NurtureService {
 
     public NurturesResponse nurtureList(NurtureRequest nurtureRequest){
-        //테스트
-        System.out.println(System.getProperty("user.dir"));
-
         WebDriver driver = WebDriverUtil.getChromeDriver();
         List<NurtureResponse> nurturesResponse = new ArrayList<>();
         long pageCnt = 0L;

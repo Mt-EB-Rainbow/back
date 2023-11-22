@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 
+import java.nio.file.Paths;
 import java.time.Duration;
 
 @Component
@@ -14,7 +15,7 @@ public class WebDriverUtil {
     private static String WEB_DRIVER_PATH;
 
     public static WebDriver getChromeDriver() {
-        System.out.println("1" + System.getProperty("user.dir"));
+        System.out.println("현재 디렉토리: " + Paths.get("").toAbsolutePath().toString());
 
         if (ObjectUtils.isEmpty(System.getProperty("webdriver.chrome.driver"))) {
             System.setProperty("webdriver.chrome.driver", WEB_DRIVER_PATH);
