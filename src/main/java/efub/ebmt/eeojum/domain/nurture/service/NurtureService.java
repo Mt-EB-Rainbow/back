@@ -93,6 +93,8 @@ public class NurtureService {
 
                 nurturesResponse.add(nurtureResponse);
             }
+
+            driver.close();
         }
 
         return new NurturesResponse(pageCnt, nurturesResponse);
