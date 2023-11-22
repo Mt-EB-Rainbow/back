@@ -10,4 +10,4 @@ RUN mkdir chrome
 RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/src/chrome
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} ./app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","./app.jar"]
