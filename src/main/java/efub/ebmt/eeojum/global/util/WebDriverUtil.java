@@ -24,7 +24,7 @@ public class WebDriverUtil {
         // webDriver 옵션 설정
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setHeadless(true); //브라우저가 눈에 보이지 않고 내부적으로 돈다.
-        //chromeOptions.setBinary("C:/Program Files/Google/Chrome Beta/Application/chrome.exe");
+        chromeOptions.setBinary("C:/Program Files/Google/Chrome Beta/Application/chrome.exe");
         chromeOptions.addArguments("--lang=ko");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
