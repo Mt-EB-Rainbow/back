@@ -14,7 +14,7 @@ public class SwaggerConfig {
 
     @Bean
     public OpenAPI openAPI() {
-        // SecuritySecheme명
+        // SecurityScheme명
         String jwtSchemeName = "jwtAuth";
         // API 요청헤더에 인증정보 포함
         SecurityRequirement securityRequirement = new SecurityRequirement().addList(jwtSchemeName);
