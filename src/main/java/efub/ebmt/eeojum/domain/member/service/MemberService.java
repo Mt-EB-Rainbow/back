@@ -4,17 +4,17 @@ import efub.ebmt.eeojum.domain.member.domain.Information;
 import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
 import efub.ebmt.eeojum.domain.member.dto.request.InformationRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.request.SignUpRequestDto;
 import efub.ebmt.eeojum.domain.member.dto.response.SignInResponseDto;
 import efub.ebmt.eeojum.domain.member.repository.InformationRepository;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -23,26 +23,24 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final InformationRepository informationRepository;
     private final RefreshTokenService refreshTokenService;
-    private final BCryptPasswordEncoder encoder;
     private final TokenProvider tokenProvider;
+    private final PasswordEncoder passwordEncoder;
 
     // 회원가입
-    public String signUp(String name, String email, String pw, Date birth, String nickname) {
-        if (memberRepository.existsByEmail(email)) {
+    public void signUp(SignUpRequestDto signUpRequest) {
+        if (memberRepository.existsByEmail(signUpRequest.getEmail())) {
             throw new RuntimeException("이미 존재하는 이메일입니다.");
         }
 
         Member member = Member.builder()
-                .name(name)
-                .email(email)
-                .pw(encoder.encode(pw))
-                .birth(birth)
-                .nickname(nickname)
+                .name(signUpRequest.getName())
+                .email(signUpRequest.getEmail())
+                .pw(passwordEncoder.encode(signUpRequest.getPw()))
+                .birth(signUpRequest.getBirth())
+                .nickname(signUpRequest.getNickname())
                 .build();
 
         memberRepository.save(member);
-
-        return "회원 가입이 완료되었습니다.";
     }
 
     // 로그인
@@ -56,7 +54,7 @@ public class MemberService {
 
         // 비밀번호 검증
         Member member = foundMember.get();
-        if (!encoder.matches(pw, member.getPw())) {
+        if (!passwordEncoder.matches(pw, member.getPw())) {
             throw new RuntimeException("잘못된 비밀번호입니다!");
         }
 

@@ -1,6 +1,5 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.service.MemberService;
 import efub.ebmt.eeojum.domain.member.service.RefreshTokenService;
 import efub.ebmt.eeojum.domain.member.dto.request.RefreshTokenRequestDto;
@@ -22,14 +21,13 @@ public class MemberController {
     private final MemberService memberService;
     private final TokenProvider tokenProvider;
     private final RefreshTokenService refreshTokenService;
-    private final KakaoOAuth kakaoOAuth;
 
     // 회원가입
     @PostMapping("/signup")
     @Operation(summary = "회원가입 API입니다. JWT를 발급합니다.")
     public ResponseEntity<String> signUp(@RequestBody SignUpRequestDto requestDto) {
-        String responseMessage = memberService.signUp(requestDto.getName(), requestDto.getEmail(), requestDto.getPw(), requestDto.getBirth(), requestDto.getNickname());
-        return ResponseEntity.ok().body(responseMessage);
+        memberService.signUp(requestDto);
+        return ResponseEntity.ok().body("회원 가입이 완료되었습니다.");
     }
 
     // 로그인

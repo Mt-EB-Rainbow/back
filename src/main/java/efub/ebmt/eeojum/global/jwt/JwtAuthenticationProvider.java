@@ -31,7 +31,7 @@ public class JwtAuthenticationProvider {
     private static final Long REFRESH_TOKEN_VALID_TIME = Duration.ofDays(14).toMillis();
     private final SecretKey secretKey;
 
-    public JwtAuthenticationProvider(@Value("${jwt.secret}") String secret){
+    public JwtAuthenticationProvider(@Value("${spring.jwt.secret-key}") String secret){
         byte[] keyBytes = Decoders.BASE64.decode(secret);
         this.secretKey = Keys.hmacShaKeyFor(keyBytes);
     }
