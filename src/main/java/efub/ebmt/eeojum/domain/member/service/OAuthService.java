@@ -5,7 +5,7 @@ import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
 import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
-import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.response.OAuthResponseDto;
 import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoUserInfoDto;
 import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;

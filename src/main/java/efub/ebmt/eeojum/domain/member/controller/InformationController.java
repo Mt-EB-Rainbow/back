@@ -1,6 +1,6 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.dto.InformationRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.request.InformationRequestDto;
 import efub.ebmt.eeojum.domain.member.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,6 +1,6 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.response.OAuthResponseDto;
 import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.service.OAuthService;

@@ -1,13 +1,12 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.dto.*;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.service.MemberService;
 import efub.ebmt.eeojum.domain.member.service.RefreshTokenService;
-import efub.ebmt.eeojum.domain.member.dto.RefreshTokenRequestDto;
-import efub.ebmt.eeojum.domain.member.dto.SignInRequestDto;
-import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.domain.member.dto.SignUpRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.request.RefreshTokenRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.request.SignInRequestDto;
+import efub.ebmt.eeojum.domain.member.dto.response.SignInResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.request.SignUpRequestDto;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
