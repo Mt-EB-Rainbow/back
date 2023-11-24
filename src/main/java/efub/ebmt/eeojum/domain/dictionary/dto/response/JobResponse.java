@@ -8,9 +8,11 @@ import lombok.NoArgsConstructor;
 public class JobResponse {
     private Long jobId;
     private String name;
+    private String imageUrl;
 
-    public JobResponse(Long jobId, String name){
+    public JobResponse(Long jobId, String name, String imageUrl){
         this.jobId = jobId;
         this.name = name;
+        this.imageUrl = imageUrl;
     }
 }
