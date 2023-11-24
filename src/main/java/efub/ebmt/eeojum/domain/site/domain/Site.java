@@ -17,7 +17,8 @@ public class Site {
 
     private String name; //사이트 이름
 
-    private String category; //사이트 종류
+    @Enumerated(EnumType.STRING)
+    private SiteType siteType; //사이트 종류
 
     private String siteUrl; //사이트 url
 
