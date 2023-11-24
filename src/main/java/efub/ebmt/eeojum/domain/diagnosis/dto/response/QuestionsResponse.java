@@ -8,9 +8,9 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class QuestionsResponse {
-    List<QuestionResponse> questionResponseList;
+    List<QuestionResponse> questions;
 
-    public QuestionsResponse(List<QuestionResponse> questionsResponse){
-        this.questionResponseList = questionsResponse;
+    public QuestionsResponse(List<QuestionResponse> questions){
+        this.questions = questions;
     }
 }
