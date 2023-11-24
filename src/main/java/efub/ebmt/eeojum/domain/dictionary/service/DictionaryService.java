@@ -27,7 +27,7 @@ public class DictionaryService {
     public List<JobResponse> jobList(Long categoryId){
         return jobRepository.findByCategoryId(categoryId)
                 .stream()
-                .map(res -> new JobResponse(res.getJobId(), res.getName()))
+                .map(res -> new JobResponse(res.getJobId(), res.getName(), res.getImageUrl()))
                 .collect(Collectors.toList());
     }
 

@@ -17,11 +17,9 @@ public class Job {
 
     private String name; //직업명
 
+    private String imageUrl;
+
     private String categoryId; //카테고리
-
-    private String hollandType1; //홀랜드유형1
-
-    private String hollandType2; //홀랜드유형2
 
     private String description; //직무소개
 
@@ -33,19 +31,19 @@ public class Job {
 
     private String cons; //단점
 
-    private Boolean nightWork; //야간 근무
+    private Long nightWork; //야간 근무(0: 없음, 1: 있음)
 
-    private Boolean fullTime; //풀타임 근무
+    private Long fullTime; //풀타임 근무(0: 풀타임, 1: 파트타임)
 
-    private Boolean physical; //몸을 많이 쓰는 직업
+    private Long flexible; //근무시간 유연(0: 고정, 1: 유연)
+
+    private Long physical; //몸을 많이 쓰는 직업(0: 안씀, 1: 씀)
 
     private String related1; //연관 직업 1
 
     private String related2; //연관 직업 2
 
     private String related3; //연관 직업 3
-
-    private String related4; //연관 직업 4
 
     private String keyword1; //키워드 1
 
