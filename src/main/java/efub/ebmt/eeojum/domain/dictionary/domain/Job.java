@@ -21,14 +21,18 @@ public class Job {
 
     private String categoryId; //카테고리
 
+    @Column(columnDefinition = "TEXT")
     private String description; //직무소개
 
     private String coreCompetency; //핵심역량
 
+    @Column(columnDefinition = "TEXT")
     private String competencies; //필요한 역량, 적성
 
+    @Column(columnDefinition = "TEXT")
     private String pros; //장점
 
+    @Column(columnDefinition = "TEXT")
     private String cons; //단점
 
     private Long nightWork; //야간 근무(0: 없음, 1: 있음)

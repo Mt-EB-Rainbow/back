@@ -22,21 +22,14 @@ public class Example {
 
     private String sourceUrl;
 
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
+    @Column(columnDefinition = "TEXT")
     private String content1;
 
+    @Column(columnDefinition = "TEXT")
     private String content2;
 
     private String imageUrl;
-
-    @Builder
-    public Example(Long exampleId, String title, String summary, String content1, String content2, String imageUrl){
-        this.exampleId = exampleId;
-        this.title = title;
-        this.summary = summary;
-        this.content1 = content1;
-        this.content2 = content2;
-        this.imageUrl = imageUrl;
-    }
 }
