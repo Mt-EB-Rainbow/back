@@ -78,7 +78,11 @@ public class DiagnosisService {
                 .collect(Collectors.toList());
 
         Collections.shuffle(jobsResponse);
-
-        return new DiagnosisResponse(jobsResponse);
+        if(diagnosisRequest.getQ2().equals(0L)){
+            return new DiagnosisResponse(false, jobsResponse);
+        }
+        else{
+            return new DiagnosisResponse(true, jobsResponse);
+        }
     }
 }
