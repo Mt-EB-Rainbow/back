@@ -18,6 +18,10 @@ public class Example {
 
     private String title;
 
+    private String name;
+
+    private String sourceUrl;
+
     private String summary;
 
     private String content1;

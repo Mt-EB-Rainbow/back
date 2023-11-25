@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 public class ExampleResponse {
     private Long exampleId;
     private String title;
+    private String name;
+    private String sourceUrl;
     private String summary;
     private String content1;
     private String content2;
@@ -17,6 +19,8 @@ public class ExampleResponse {
     public ExampleResponse(Example example){
         this.exampleId = example.getExampleId();
         this.title = example.getTitle();
+        this.title = example.getSourceUrl();
+        this.name = example.getName();
         this.summary = example.getSummary();
         this.content1 = example.getContent1();
         this.content2 = example.getContent2();
