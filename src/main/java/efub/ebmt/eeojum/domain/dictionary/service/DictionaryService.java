@@ -2,10 +2,7 @@ package efub.ebmt.eeojum.domain.dictionary.service;
 
 import efub.ebmt.eeojum.domain.dictionary.domain.Category;
 import efub.ebmt.eeojum.domain.dictionary.domain.Job;
-import efub.ebmt.eeojum.domain.dictionary.dto.response.CategoriesResponse;
-import efub.ebmt.eeojum.domain.dictionary.dto.response.CategoryResponse;
-import efub.ebmt.eeojum.domain.dictionary.dto.response.JobDetailResponse;
-import efub.ebmt.eeojum.domain.dictionary.dto.response.JobResponse;
+import efub.ebmt.eeojum.domain.dictionary.dto.response.*;
 import efub.ebmt.eeojum.domain.dictionary.repository.CategoryRepository;
 import efub.ebmt.eeojum.domain.dictionary.repository.JobRepository;
 import efub.ebmt.eeojum.global.exception.CustomException;
@@ -42,5 +39,12 @@ public class DictionaryService {
     public JobDetailResponse jobDetails(Long jobId){
         Job job = jobRepository.findById(jobId).orElseThrow(() -> new CustomException(ErrorCode.JOB_NOT_FOUND));
         return new JobDetailResponse(job);
+    }
+
+    public JobsResponse searchJobs(String query){
+        return new JobsResponse(jobRepository.findAll().stream()
+                .filter(j -> j.getName().contains(query) || j.getDescription().contains(query))
+                .map(j -> new JobResponse(j.getJobId(), j.getName(), j.getImageUrl()))
+                .collect(Collectors.toList()));
     }
 }

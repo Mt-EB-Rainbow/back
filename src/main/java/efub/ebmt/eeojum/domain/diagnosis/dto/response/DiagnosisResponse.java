@@ -9,9 +9,11 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 public class DiagnosisResponse {
-    List<JobResponse> jobsResponse;
+    private List<JobResponse> jobsResponse;
+    private Boolean needNurture;
 
-    public DiagnosisResponse(List<JobResponse> jobsResponse){
+    public DiagnosisResponse(Boolean needNurture, List<JobResponse> jobsResponse){
         this.jobsResponse = jobsResponse;
+        this.needNurture = needNurture;
     }
 }

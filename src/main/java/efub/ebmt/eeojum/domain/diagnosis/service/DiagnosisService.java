@@ -51,6 +51,7 @@ public class DiagnosisService {
     private Boolean flexible; //근무시간 유연(0: 고정, 1: 유연)
     private Boolean physical; //몸을 많이 쓰는 직업(0: 안씀, 1: 씀)
     */
+    //TODO: queryDSL
     public DiagnosisResponse diagnosisResult(DiagnosisRequest diagnosisRequest){
         List<Job> jobs = jobRepository.findAll();
         //야간 근무 불가능할 시 야간 근무 없는 직업만 남김
@@ -78,7 +79,11 @@ public class DiagnosisService {
                 .collect(Collectors.toList());
 
         Collections.shuffle(jobsResponse);
-
-        return new DiagnosisResponse(jobsResponse);
+        if(diagnosisRequest.getQ2().equals(0L)){
+            return new DiagnosisResponse(false, jobsResponse);
+        }
+        else{
+            return new DiagnosisResponse(true, jobsResponse);
+        }
     }
 }

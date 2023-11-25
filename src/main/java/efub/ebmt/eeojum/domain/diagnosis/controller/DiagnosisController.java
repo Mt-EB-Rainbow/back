@@ -25,7 +25,7 @@ public class DiagnosisController {
 
     @PostMapping("")
     @Operation(summary = "상황 기반 직무 추천 선택지 보내면 결과 직업 리스트(id, name, imageUrl) 반환")
-    public ResponseEntity<DiagnosisResponse> postAnswerToDiagnosis(@PathVariable DiagnosisRequest diagnosisRequest){
+    public ResponseEntity<DiagnosisResponse> postAnswerToDiagnosis(@RequestBody DiagnosisRequest diagnosisRequest){
         DiagnosisResponse diagnosisResponse = diagnosisService.diagnosisResult(diagnosisRequest);
         return new ResponseEntity<>(diagnosisResponse, HttpStatus.OK);
     }
