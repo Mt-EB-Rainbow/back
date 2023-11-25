@@ -19,7 +19,7 @@ public class ExampleResponse {
     public ExampleResponse(Example example){
         this.exampleId = example.getExampleId();
         this.title = example.getTitle();
-        this.title = example.getSourceUrl();
+        this.sourceUrl = example.getSourceUrl();
         this.name = example.getName();
         this.summary = example.getSummary();
         this.content1 = example.getContent1();
