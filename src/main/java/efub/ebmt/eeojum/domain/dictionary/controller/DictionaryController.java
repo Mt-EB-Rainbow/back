@@ -2,6 +2,7 @@ package efub.ebmt.eeojum.domain.dictionary.controller;
 
 import efub.ebmt.eeojum.domain.dictionary.dto.response.CategoriesResponse;
 import efub.ebmt.eeojum.domain.dictionary.dto.response.JobDetailResponse;
+import efub.ebmt.eeojum.domain.dictionary.dto.response.JobsResponse;
 import efub.ebmt.eeojum.domain.dictionary.service.DictionaryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,9 +29,15 @@ public class DictionaryController {
     }
 
     @GetMapping("/{jobId}")
-    @Operation(summary = "")
+    @Operation(summary = "직업 상세 정보")
     public ResponseEntity<JobDetailResponse> getJobDetails(@PathVariable Long jobId){
         return new ResponseEntity<>(dictionaryService.jobDetails(jobId), HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{query}")
+    @Operation(summary = "직무 백과 검색")
+    public ResponseEntity<JobsResponse> getJobSearch(@PathVariable String query){
+        return new ResponseEntity<>(dictionaryService.searchJobs(query), HttpStatus.OK);
     }
 
 }
