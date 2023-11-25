@@ -32,4 +32,5 @@ public class DictionaryController {
     public ResponseEntity<JobDetailResponse> getJobDetails(@PathVariable Long jobId){
         return new ResponseEntity<>(dictionaryService.jobDetails(jobId), HttpStatus.OK);
     }
+
 }
