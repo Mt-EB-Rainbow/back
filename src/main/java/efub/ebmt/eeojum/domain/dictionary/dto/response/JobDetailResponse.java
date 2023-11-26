@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 public class JobDetailResponse {
     private Long jobId;
     private String name; //직업명
-    private String categoryId; //카테고리
+    private Long categoryId; //카테고리
     private String description; //직무소개
     private String coreCompetency; //핵심역량
     private String competencies; //필요한 역량, 적성
