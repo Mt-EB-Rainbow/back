@@ -3,7 +3,6 @@ package efub.ebmt.eeojum.domain.dictionary.controller;
 import efub.ebmt.eeojum.domain.dictionary.dto.response.CategoriesResponse;
 import efub.ebmt.eeojum.domain.dictionary.dto.response.JobDetailResponse;
 import efub.ebmt.eeojum.domain.dictionary.dto.response.JobDetailResponses;
-import efub.ebmt.eeojum.domain.dictionary.dto.response.JobsResponse;
 import efub.ebmt.eeojum.domain.dictionary.service.DictionaryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

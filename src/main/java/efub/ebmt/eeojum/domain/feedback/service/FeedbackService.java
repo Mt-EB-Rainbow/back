@@ -30,7 +30,7 @@ public class FeedbackService {
 
     public FeedbacksResponse feedbackList(Long resumeId){
         return new FeedbacksResponse(feedbackRepository.findByResumeId(resumeId).stream()
-                .map(f -> new FeedbackResponse(f.getFeedbackId(), f.getContent()))
+                .map(FeedbackResponse::new)
                 .collect(Collectors.toList()));
     }
 }
