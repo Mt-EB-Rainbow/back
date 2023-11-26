@@ -1,11 +1,15 @@
 package efub.ebmt.eeojum.domain.train.service;
 
 import com.google.common.net.HttpHeaders;
+import efub.ebmt.eeojum.domain.dictionary.domain.Job;
+import efub.ebmt.eeojum.domain.dictionary.repository.JobRepository;
 import efub.ebmt.eeojum.domain.train.dto.request.TrainRequest;
 import efub.ebmt.eeojum.domain.train.dto.response.TrainResponse;
 import efub.ebmt.eeojum.domain.train.dto.response.TrainsResponse;
 import efub.ebmt.eeojum.domain.train.dto.response.XmlResponse;
 import efub.ebmt.eeojum.domain.train.repository.TrainRepository;
+import efub.ebmt.eeojum.global.exception.CustomException;
+import efub.ebmt.eeojum.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +24,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +33,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class TrainService {
     private final TrainRepository trainRepository;
+    private final JobRepository jobRepository;
 
     @Value("${openapi.dream.auth-key}")
     String authKey;
@@ -127,7 +133,15 @@ public class TrainService {
                 .collect(Collectors.toList());
     }
 
-    public TrainsResponse educationList(TrainRequest trainRequest){
+    public TrainsResponse educationSearchList(TrainRequest trainRequest){
         return new TrainsResponse(searchEducationFromDatabase(trainRequest.getQuery(), trainRequest.getCategory(), trainRequest.getClassDomain()));
+    }
+
+    public TrainsResponse educationSearchByJobId(Long jobId){
+        Job job = jobRepository.findById(jobId).orElseThrow(() -> new CustomException(ErrorCode.JOB_NOT_FOUND));
+        List<TrainResponse> trainResponses = new ArrayList<>(searchEducationFromDatabase(job.getKeyword1(), null, null));
+        trainResponses.addAll(searchEducationFromDatabase(job.getKeyword2(), null, null));
+        trainResponses.addAll(searchEducationFromDatabase(job.getKeyword3(), null, null));
+        return new TrainsResponse(trainResponses);
     }
 }

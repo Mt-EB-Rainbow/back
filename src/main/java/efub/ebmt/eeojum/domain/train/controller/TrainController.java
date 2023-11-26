@@ -15,14 +15,20 @@ public class TrainController {
     private final TrainService educationService;
 
     @GetMapping("/search")
-    public ResponseEntity<TrainsResponse> getEducation(@RequestBody TrainRequest trainRequest){
-        return new ResponseEntity<>(educationService.educationList(trainRequest), HttpStatus.OK);
+    public ResponseEntity<TrainsResponse> getEducationSearch(@RequestBody TrainRequest trainRequest){
+        return new ResponseEntity<>(educationService.educationSearchList(trainRequest), HttpStatus.OK);
     }
 
     @PostMapping("/save")
     public ResponseEntity<String> saveEducation(){
-        educationService.educationSave();
-        return new ResponseEntity<>("저장 완료", HttpStatus.OK);
+        return new ResponseEntity<>("저장 불가", HttpStatus.OK);
+        //educationService.educationSave();
+        //return new ResponseEntity<>("저장 완료", HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{jobId}")
+    public ResponseEntity<TrainsResponse> getEducationSearchByJobId(@PathVariable Long jobId){
+        return new ResponseEntity<>(educationService.educationSearchByJobId(jobId), HttpStatus.OK);
     }
 
 }
