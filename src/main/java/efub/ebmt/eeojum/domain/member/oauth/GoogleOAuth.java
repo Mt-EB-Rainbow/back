@@ -1,6 +1,6 @@
 package efub.ebmt.eeojum.domain.member.oauth;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
 import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
@@ -54,11 +54,11 @@ public class GoogleOAuth {
         return null;
     }
 
-    public GoogleOAuthTokenDto getAccessToken(ResponseEntity<String> response) throws JsonProcessingException {
-        System.out.println("response.getBody() = " + response.getBody());
-        GoogleOAuthTokenDto googleOAuthTokenDto = objectMapper.readValue(response.getBody(), GoogleOAuthTokenDto.class);
-        return googleOAuthTokenDto;
-    }
+//    public GoogleOAuthTokenDto getAccessToken(ResponseEntity<String> response) throws JsonProcessingException {
+//        System.out.println("response.getBody() = " + response.getBody());
+//        GoogleOAuthTokenDto googleOAuthTokenDto = objectMapper.readValue(response.getBody(), GoogleOAuthTokenDto.class);
+//        return googleOAuthTokenDto;
+//    }
 
     public ResponseEntity<String> requestUserInfo(GoogleOAuthTokenDto oAuthToken) {
 
@@ -71,10 +71,10 @@ public class GoogleOAuth {
         return response;
     }
 
-    public GoogleUserInfoDto getUserInfo(ResponseEntity<String> response) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        GoogleUserInfoDto googleUserInfoDto = objectMapper.readValue(response.getBody(), GoogleUserInfoDto.class);
-        return googleUserInfoDto;
-    }
+//    public GoogleUserInfoDto getUserInfo(ResponseEntity<String> response) throws JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        GoogleUserInfoDto googleUserInfoDto = objectMapper.readValue(response.getBody(), GoogleUserInfoDto.class);
+//        return googleUserInfoDto;
+//    }
 
 }

@@ -29,36 +29,36 @@ public class OAuthController {
     private final GoogleOAuth googleOAuth;
 
     // 카카오 로그인
-    @GetMapping("/kakao")
-    @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "카카오 로그인 URL을 반환합니다.")
-    public void getKakaoAuthUrl(HttpServletResponse response) throws IOException {
-        response.sendRedirect(kakaoOAuth.responseUrl());
-    }
+//    @GetMapping("/kakao")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    @Operation(summary = "카카오 로그인 URL을 반환합니다.")
+//    public void getKakaoAuthUrl(HttpServletResponse response) throws IOException {
+//        response.sendRedirect(kakaoOAuth.responseUrl());
+//    }
 
-    @GetMapping("/signin/kakao")
-    @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "카카오 로그인 API입니다.")
-    public ResponseEntity<OAuthResponseDto> kakaoSignIn(
-            @RequestParam(name = "code") String code) throws IOException {
-        return oAuthService.kakaoSignIn(code);
-    }
+//    @GetMapping("/signin/kakao")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    @Operation(summary = "카카오 로그인 API입니다.")
+//    public ResponseEntity<OAuthResponseDto> kakaoSignIn(
+//            @RequestParam(name = "code") String code) throws IOException {
+//        return oAuthService.kakaoSignIn(code);
+//    }
 
     // 구글 로그인
-    @GetMapping("/google")
-    @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "구글 로그인 URL을 반환합니다.")
-    public void getGoogleAuthUrl(HttpServletResponse response) throws Exception {
-        response.sendRedirect(googleOAuth.getOauthRedirectURL());
-    }
+//    @GetMapping("/google")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    @Operation(summary = "구글 로그인 URL을 반환합니다.")
+//    public void getGoogleAuthUrl(HttpServletResponse response) throws Exception {
+//        response.sendRedirect(googleOAuth.getOauthRedirectURL());
+//    }
 
-    @GetMapping("/signin/google")
-    @ResponseStatus(value = HttpStatus.OK)
-    @Operation(summary = "구글 로그인 API입니다.")
-    public ResponseEntity<OAuthResponseDto> googleSignIn(
-            @RequestParam(name = "code") String code) throws IOException {
-        // URL 디코딩
-        String decodedCode = URLDecoder.decode(code, StandardCharsets.UTF_8.toString());
-        return oAuthService.googleSignIn(decodedCode);
-    }
+//    @GetMapping("/signin/google")
+//    @ResponseStatus(value = HttpStatus.OK)
+//    @Operation(summary = "구글 로그인 API입니다.")
+//    public ResponseEntity<OAuthResponseDto> googleSignIn(
+//            @RequestParam(name = "code") String code) throws IOException {
+//        // URL 디코딩
+//        String decodedCode = URLDecoder.decode(code, StandardCharsets.UTF_8.toString());
+//        return oAuthService.googleSignIn(decodedCode);
+//    }
 }
