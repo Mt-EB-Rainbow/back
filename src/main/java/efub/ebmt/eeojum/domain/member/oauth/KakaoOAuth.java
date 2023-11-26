@@ -1,7 +1,7 @@
 package efub.ebmt.eeojum.domain.member.oauth;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.core.JsonProcessingException;
+//import com.fasterxml.jackson.databind.ObjectMapper;
 import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
 import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoUserInfoDto;
 import lombok.RequiredArgsConstructor;
@@ -53,11 +53,11 @@ public class KakaoOAuth {
         return responseEntity;
     }
 
-    public KakaoOAuthTokenDto getAccessToken(ResponseEntity<String> response) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        KakaoOAuthTokenDto kakaoOAuthTokenDto = objectMapper.readValue(response.getBody(), KakaoOAuthTokenDto.class);
-        return kakaoOAuthTokenDto;
-    }
+//    public KakaoOAuthTokenDto getAccessToken(ResponseEntity<String> response) throws JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        KakaoOAuthTokenDto kakaoOAuthTokenDto = objectMapper.readValue(response.getBody(), KakaoOAuthTokenDto.class);
+//        return kakaoOAuthTokenDto;
+//    }
 
     public ResponseEntity<String> requestUserInfo(KakaoOAuthTokenDto oAuthToken) {
         HttpHeaders headers = new HttpHeaders();
@@ -69,10 +69,10 @@ public class KakaoOAuth {
         return response;
     }
 
-    public KakaoUserInfoDto getUserInfo(ResponseEntity<String> response) throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        KakaoUserInfoDto kakaoUserInfoDto = objectMapper.readValue(response.getBody(), KakaoUserInfoDto.class);
-        return kakaoUserInfoDto;
-    }
+//    public KakaoUserInfoDto getUserInfo(ResponseEntity<String> response) throws JsonProcessingException {
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        KakaoUserInfoDto kakaoUserInfoDto = objectMapper.readValue(response.getBody(), KakaoUserInfoDto.class);
+//        return kakaoUserInfoDto;
+//    }
 
 }
