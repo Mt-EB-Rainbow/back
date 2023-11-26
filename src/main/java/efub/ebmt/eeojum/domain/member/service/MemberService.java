@@ -1,11 +1,9 @@
 package efub.ebmt.eeojum.domain.member.service;
 
-import efub.ebmt.eeojum.domain.member.domain.Information;
 import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
 import efub.ebmt.eeojum.domain.member.dto.InformationRequestDto;
 import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
-import efub.ebmt.eeojum.domain.member.repository.InformationRepository;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +19,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-    private final InformationRepository informationRepository;
     private final RefreshTokenService refreshTokenService;
     private final BCryptPasswordEncoder encoder;
     private final TokenProvider tokenProvider;
@@ -78,22 +75,6 @@ public class MemberService {
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
                 .build();
-    }
-
-    @Transactional
-    public void addInformation(Long memberId, InformationRequestDto infoDto) {
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 멤버입니다. ID : " + memberId));
-
-        Information information = Information.builder()
-                .address(infoDto.getAddress())
-                .careerBreak(infoDto.getCareerBreak())
-                .prgStatus(infoDto.isPrgStatus())
-                .desiredSalary(infoDto.getDesiredSalary())
-                .member(member)
-                .build();
-
-        informationRepository.save(information);
     }
 
     @Transactional(readOnly = true)
