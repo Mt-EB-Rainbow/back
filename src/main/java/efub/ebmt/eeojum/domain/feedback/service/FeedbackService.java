@@ -1,6 +1,8 @@
 package efub.ebmt.eeojum.domain.feedback.service;
 
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackRequest;
+import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbackResponse;
+import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbacksResponse;
 import efub.ebmt.eeojum.domain.feedback.repository.FeedbackRepository;
 import efub.ebmt.eeojum.domain.resume.domain.Resume;
 import efub.ebmt.eeojum.domain.resume.domain.ResumeStatus;
@@ -10,6 +12,8 @@ import efub.ebmt.eeojum.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -24,4 +28,9 @@ public class FeedbackService {
         resume.updateResumeStatus(ResumeStatus.ARRIVED);
     }
 
+    public FeedbacksResponse feedbackList(Long resumeId){
+        return new FeedbacksResponse(feedbackRepository.findByResumeId(resumeId).stream()
+                .map(f -> new FeedbackResponse(f.getFeedbackId(), f.getContent()))
+                .collect(Collectors.toList()));
+    }
 }

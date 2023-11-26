@@ -1,6 +1,7 @@
 package efub.ebmt.eeojum.domain.feedback.controller;
 
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackRequest;
+import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbacksResponse;
 import efub.ebmt.eeojum.domain.feedback.service.FeedbackService;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,6 +24,12 @@ public class FeedbackController {
     public ResponseEntity<String> feedbackAdd(@RequestBody FeedbackRequest feedbackRequest) {
         feedbackService.addFeedback(feedbackRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{resumeId}")
+    @Operation(summary = "피드백 조회")
+    public ResponseEntity<FeedbacksResponse> getFeedback(@PathVariable Long resumeId){
+        return new ResponseEntity<>(feedbackService.feedbackList(resumeId), HttpStatus.OK);
     }
 
 }
