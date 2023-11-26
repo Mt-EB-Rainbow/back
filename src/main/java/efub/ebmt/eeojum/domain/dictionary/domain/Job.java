@@ -19,7 +19,7 @@ public class Job {
 
     private String imageUrl;
 
-    private String categoryId; //카테고리
+    private Long categoryId; //카테고리
 
     @Column(columnDefinition = "TEXT")
     private String description; //직무소개
