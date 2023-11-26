@@ -41,10 +41,11 @@ public class DictionaryService {
         return new JobDetailResponse(job);
     }
 
-    public JobsResponse searchJobs(String query){
-        return new JobsResponse(jobRepository.findAll().stream()
+    public JobDetailResponses searchJobs(String query){
+        return new JobDetailResponses(jobRepository.findAll()
+                .stream()
                 .filter(j -> j.getName().contains(query) || j.getDescription().contains(query))
-                .map(j -> new JobResponse(j.getJobId(), j.getName(), j.getImageUrl()))
+                .map(j -> new JobDetailResponse(j))
                 .collect(Collectors.toList()));
     }
 }
