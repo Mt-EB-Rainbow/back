@@ -48,6 +48,11 @@ dependencies {
 
 	//selenium
 	implementation 'org.seleniumhq.selenium:selenium-java:4.6.0'
+
+	// xml 파싱 라이브러리
+	implementation group: 'org.json', name: 'json', version: '20231013'
+	implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.10.1'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.1'
 }
 
 tasks.named('test') {
