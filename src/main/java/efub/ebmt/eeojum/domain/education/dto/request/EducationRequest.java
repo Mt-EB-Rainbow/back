@@ -7,6 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class EducationRequest {
     private String query; //검색어
-    private String type;  //온라인, 오프라인
-    private String category; //분류
+    private String category; //카테고리
+    private String classDomain; //교육 분야
 }

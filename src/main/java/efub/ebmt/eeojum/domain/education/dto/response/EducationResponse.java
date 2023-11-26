@@ -14,7 +14,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class EducationResponse {
     private String courseName;
     private String fileUrl;
-    private String majorCategoryName;
     private String contentsName;
     private String applyUrl;
+
+    public EducationResponse(XmlResponse.ResponseBody.List.Data data){
+        this.courseName = data.getCourseName();
+        this.fileUrl = data.getFileUrl();
+        this.contentsName = data.getContentsName();
+        this.applyUrl = data.getApplyUrl();
+    }
 }
