@@ -1,10 +1,11 @@
-package efub.ebmt.eeojum.domain.education.service;
+package efub.ebmt.eeojum.domain.train.service;
 
 import com.google.common.net.HttpHeaders;
-import efub.ebmt.eeojum.domain.education.dto.request.EducationRequest;
-import efub.ebmt.eeojum.domain.education.dto.response.EducationResponse;
-import efub.ebmt.eeojum.domain.education.dto.response.EducationsResponse;
-import efub.ebmt.eeojum.domain.education.dto.response.XmlResponse;
+import efub.ebmt.eeojum.domain.train.dto.request.TrainRequest;
+import efub.ebmt.eeojum.domain.train.dto.response.TrainResponse;
+import efub.ebmt.eeojum.domain.train.dto.response.TrainsResponse;
+import efub.ebmt.eeojum.domain.train.dto.response.XmlResponse;
+import efub.ebmt.eeojum.domain.train.repository.TrainRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +26,9 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EducationService {
+public class TrainService {
+    private final TrainRepository trainRepository;
+
     @Value("${openapi.dream.auth-key}")
     String authKey;
 
@@ -73,35 +76,58 @@ public class EducationService {
         return null;
     }
 
+    //DB에 저장하는 경우
     public void educationSave(){
-        return;
-    }
-
-    public List<EducationResponse> searchEducationByQuery(String query, String category, String classDomain){
-        List<EducationResponse> educationResponses = new ArrayList<>();
         for(int i=1; i<23; i++) {
             if(i == 4)
                 continue; //외부 open API 에러로 4페이지는 읽을 수 없음.
-            educationResponses.addAll(xmlToJavaObject("A", i, 50).getResponseBody().getList().getData().stream()
-                    .filter(data -> category == null ? 1 == 1 : data.getMajorCategoryName().equals(category))
-                    .filter(data -> classDomain == null ? 1 == 1 : data.getMiddleCategoryName().equals(classDomain))
-                    .filter(data -> query == null ? 1 == 1 : (data.getCourseName().contains(query) || data.getContentsName().contains(query)))
-                    .map(EducationResponse::new)
+            trainRepository.saveAll(xmlToJavaObject("A", i, 50).getResponseBody().getList().getData().stream()
+                    .map(data -> data.of(data))
                     .collect(Collectors.toList()));
         }
 
         for(int i=1; i<32; i++){
-            educationResponses.addAll(xmlToJavaObject("B", i, 50).getResponseBody().getList().getData().stream()
+            trainRepository.saveAll(xmlToJavaObject("B", i, 50).getResponseBody().getList().getData().stream()
+                    .map(data -> data.of(data))
+                    .collect(Collectors.toList()));
+        }
+    }
+
+    //open API XML에서 바로 읽어오는 경우
+    public List<TrainResponse> searchEducationFromOpenAPI(String query, String category, String classDomain){
+        List<TrainResponse> trainRespons = new ArrayList<>();
+        for(int i=1; i<23; i++) {
+            if(i == 4)
+                continue; //외부 open API 에러로 4페이지는 읽을 수 없음.
+            trainRespons.addAll(xmlToJavaObject("A", i, 50).getResponseBody().getList().getData().stream()
                     .filter(data -> category == null ? 1 == 1 : data.getMajorCategoryName().equals(category))
                     .filter(data -> classDomain == null ? 1 == 1 : data.getMiddleCategoryName().equals(classDomain))
                     .filter(data -> query == null ? 1 == 1 : (data.getCourseName().contains(query) || data.getContentsName().contains(query)))
-                    .map(EducationResponse::new)
+                    .map(TrainResponse::new)
                     .collect(Collectors.toList()));
         }
-        return educationResponses;
+
+        for(int i=1; i<32; i++){
+            trainRespons.addAll(xmlToJavaObject("B", i, 50).getResponseBody().getList().getData().stream()
+                    .filter(data -> category == null ? 1 == 1 : data.getMajorCategoryName().equals(category))
+                    .filter(data -> classDomain == null ? 1 == 1 : data.getMiddleCategoryName().equals(classDomain))
+                    .filter(data -> query == null ? 1 == 1 : (data.getCourseName().contains(query) || data.getContentsName().contains(query)))
+                    .map(TrainResponse::new)
+                    .collect(Collectors.toList()));
+        }
+        return trainRespons;
     }
 
-    public EducationsResponse educationList(EducationRequest educationRequest){
-        return new EducationsResponse(searchEducationByQuery(educationRequest.getQuery(), educationRequest.getCategory(), educationRequest.getClassDomain()));
+    public List<TrainResponse> searchEducationFromDatabase(String query, String category, String classDomain){
+        return trainRepository.findAll().stream()
+                .filter(data -> category == null ? 1 == 1 : data.getMajorCategoryName().equals(category))
+                .filter(data -> classDomain == null ? 1 == 1 : data.getMiddleCategoryName().equals(classDomain))
+                .filter(data -> query == null ? 1 == 1 : (data.getCourseName().contains(query) || data.getContentsName().contains(query)))
+                .map(TrainResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    public TrainsResponse educationList(TrainRequest trainRequest){
+        return new TrainsResponse(searchEducationFromDatabase(trainRequest.getQuery(), trainRequest.getCategory(), trainRequest.getClassDomain()));
     }
 }

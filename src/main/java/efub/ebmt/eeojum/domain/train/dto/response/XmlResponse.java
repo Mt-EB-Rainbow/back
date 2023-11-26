@@ -1,5 +1,6 @@
-package efub.ebmt.eeojum.domain.education.dto.response;
+package efub.ebmt.eeojum.domain.train.dto.response;
 
+import efub.ebmt.eeojum.domain.train.domain.Train;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -58,6 +59,17 @@ public class XmlResponse {
                 private String detailUrl;
                 private String onlineTrainingTime;
                 private String applyUrl;
+
+                public Train of(Data data){
+                    return Train.builder()
+                            .courseName(data.getCourseName())
+                            .majorCategoryName(data.getMajorCategoryName())
+                            .middleCategoryName(data.getMiddleCategoryName())
+                            .applyUrl(data.getApplyUrl())
+                            .contentsName(data.getContentsName())
+                            .fileUrl(data.getFileUrl())
+                            .build();
+                }
             }
         }
     }

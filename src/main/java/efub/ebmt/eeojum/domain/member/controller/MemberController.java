@@ -1,6 +1,5 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.dto.*;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.service.MemberService;
 import efub.ebmt.eeojum.domain.member.service.RefreshTokenService;
