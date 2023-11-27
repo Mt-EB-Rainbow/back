@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class TrainController {
     private final TrainService educationService;
 
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<TrainsResponse> getEducationSearch(@RequestBody TrainRequest trainRequest){
         return new ResponseEntity<>(educationService.educationSearchList(trainRequest), HttpStatus.OK);
     }

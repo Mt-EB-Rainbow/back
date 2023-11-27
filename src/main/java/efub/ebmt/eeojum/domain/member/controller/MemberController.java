@@ -11,6 +11,7 @@ import efub.ebmt.eeojum.global.config.TokenProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class MemberController {
     @PostMapping("/signup")
     @Operation(summary = "회원가입 API입니다. JWT를 발급합니다.")
     public ResponseEntity<String> signUp(@RequestBody SignUpRequestDto requestDto) {
-        String responseMessage = memberService.signUp(requestDto.getName(), requestDto.getEmail(), requestDto.getPw(), requestDto.getBirth(), requestDto.getNickname());
+        String responseMessage = memberService.signUp(requestDto);
         return ResponseEntity.ok().body(responseMessage);
     }
 
@@ -55,5 +56,11 @@ public class MemberController {
     @Operation(summary = "토큰을 재발급하는 API입니다. RefreshToken을 이용해 새 AccessToken을 발급합니다.")
     public String requestRefresh(@RequestBody RefreshTokenRequestDto refreshTokenDto) {
         return tokenProvider.refreshAccessToken(refreshTokenDto.getRefreshToken());
+    }
+
+    @GetMapping("/check/{memberId}")
+    @Operation(summary = "사용자가 멘토이면 true 일반 사용자면 false 반환")
+    public ResponseEntity<Boolean> checkMentor(@PathVariable Long memberId){
+        return new ResponseEntity<>(memberService.mentorCheck(memberId), HttpStatus.OK);
     }
 }
