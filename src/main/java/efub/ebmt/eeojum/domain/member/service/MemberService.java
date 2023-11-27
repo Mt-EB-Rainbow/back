@@ -2,8 +2,8 @@ package efub.ebmt.eeojum.domain.member.service;
 
 import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
-import efub.ebmt.eeojum.domain.member.dto.InformationRequestDto;
 import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.SignUpRequestDto;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -24,17 +23,16 @@ public class MemberService {
     private final TokenProvider tokenProvider;
 
     // 회원가입
-    public String signUp(String name, String email, String pw, Date birth, String nickname) {
-        if (memberRepository.existsByEmail(email)) {
+    public String signUp(SignUpRequestDto requestDto) {
+        if (memberRepository.existsByEmail(requestDto.getEmail())) {
             throw new RuntimeException("이미 존재하는 이메일입니다.");
         }
 
         Member member = Member.builder()
-                .name(name)
-                .email(email)
-                .pw(encoder.encode(pw))
-                .birth(birth)
-                .nickname(nickname)
+                .name(requestDto.getName())
+                .email(requestDto.getEmail())
+                .pw(encoder.encode(requestDto.getPw()))
+                .isMentor(requestDto.getIsMentor())
                 .build();
 
         memberRepository.save(member);
@@ -81,5 +79,9 @@ public class MemberService {
     public Member findById(Long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 멤버입니다. ID : " + memberId));
+    }
+
+    public Boolean mentorCheck(Long memberId){
+        return memberRepository.findById(memberId).orElseThrow(() -> new EntityNotFoundException("존재하지 않는 멤버입니다. ID : " + memberId)).getIsMentor();
     }
 }
