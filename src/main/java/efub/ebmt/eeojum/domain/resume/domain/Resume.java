@@ -26,14 +26,18 @@ public class Resume extends BaseTimeEntity {
     @Column
     private String introduction;
 
+    @Column // 공개여부
+    private boolean isSecrete;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(255) default 'NOT_ASKED'")
     @Builder.Default
     private ResumeStatus resumeStatus = ResumeStatus.NOT_ASKED;
 
-    public void updateResume(String title, String introduction){
+    public void updateResume(String title, String introduction, boolean isSecrete){
         this.title = title;
         this.introduction = introduction;
+        this.isSecrete = isSecrete;
     }
 
     public void updateResumeStatus(ResumeStatus resumeStatus){

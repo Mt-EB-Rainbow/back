@@ -12,11 +12,13 @@ public class ResumeResponse {
     private String title;
     private String introduction;
     private ResumeStatus resumeStatus;
+    private boolean isSecrete;
 
     public ResumeResponse(Resume resume) {
         this.resumeId = resume.getResumeId();
         this.title = resume.getTitle();
         this.introduction = resume.getIntroduction();
         this.resumeStatus = resume.getResumeStatus();
+        this.isSecrete = resume.getIsSecrete();
     }
 }

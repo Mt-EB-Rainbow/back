@@ -11,8 +11,13 @@ import java.util.List;
 public class ResumeUpdateRequest {
     private String title;
     private String introduction;
+    private boolean isSecrete;
     private List<EducationRequest> educations;
     private List<ExperienceRequest> experiences;
     private List<LanguageRequest> languages;
     private List<AwardRequest> awards;
+
+    public boolean getIsSecrete() {
+        return this.isSecrete;
+    }
 }

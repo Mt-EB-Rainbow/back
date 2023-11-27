@@ -34,7 +34,7 @@ public class ResumeService {
 
     public ResumeResponse modifyResume(Long resumeId, ResumeUpdateRequest resumeUpdateRequest){
         Resume resume = resumeRepository.findById(resumeId).orElseThrow(() -> new CustomException(ErrorCode.RESUME_NOT_FOUND));
-        resume.updateResume(resumeUpdateRequest.getTitle(), resumeUpdateRequest.getIntroduction());
+        resume.updateResume(resumeUpdateRequest.getTitle(), resumeUpdateRequest.getIntroduction(), resumeUpdateRequest.getIsSecrete());
         educationRepository.saveAll(resumeUpdateRequest.getEducations().stream()
                 .map(r -> r.of(resumeId))
                 .collect(Collectors.toList()));
