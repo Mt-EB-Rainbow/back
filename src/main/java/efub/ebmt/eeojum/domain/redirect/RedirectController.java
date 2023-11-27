@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/a")
+@RequestMapping("/eeojum")
 public class RedirectController {
     @GetMapping("")
     public void oauthLogin(HttpServletResponse response) throws IOException {
