@@ -28,14 +28,8 @@ public class Member {
     @Column(nullable = false, length = 120)
     private String pw;
 
-    @Column(nullable = false, length = 32)
-    private String nickname;
-
-    @Column(nullable = false)
-    private Date birth;
-
     @Column(name = "is_mentor")
-    private boolean isMentor;
+    private Boolean isMentor;
 
     public Member update(String name) {
         this.name = name;
@@ -46,8 +40,6 @@ public class Member {
         this.name = name;
         this.email = email;
         this.pw = pw;
-        this.nickname = nickname;
-        this.birth = birth;
         this.isMentor = false;
     }
 }
