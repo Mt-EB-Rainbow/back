@@ -43,4 +43,8 @@ public class Resume extends BaseTimeEntity {
     public void updateResumeStatus(ResumeStatus resumeStatus){
         this.resumeStatus = resumeStatus;
     }
+
+    public boolean getIsSecrete() {
+        return this.isSecrete;
+    }
 }
