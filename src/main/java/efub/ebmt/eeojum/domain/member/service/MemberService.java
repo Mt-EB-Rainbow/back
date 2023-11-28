@@ -6,6 +6,8 @@ import efub.ebmt.eeojum.domain.member.dto.response.SignInResponseDto;
 import efub.ebmt.eeojum.domain.member.dto.SignUpRequestDto;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
+import efub.ebmt.eeojum.global.exception.CustomException;
+import efub.ebmt.eeojum.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ public class MemberService {
     // 회원가입
     public String signUp(SignUpRequestDto requestDto) {
         if (memberRepository.existsByEmail(requestDto.getEmail())) {
-            throw new RuntimeException("이미 존재하는 이메일입니다.");
+            throw new CustomException(ErrorCode.EMAIL_EXISTS);
         }
 
         Member member = Member.builder()
@@ -36,23 +38,20 @@ public class MemberService {
                 .build();
 
         memberRepository.save(member);
-
         return "회원 가입이 완료되었습니다.";
     }
 
     // 로그인
     public SignInResponseDto signIn(String email, String pw) {
         // 존재하지 않는 이메일
-        Optional<Member> foundMember = memberRepository.findMemberByEmail(email);
-
-        if (!foundMember.isPresent()) {
-            throw new EntityNotFoundException("존재하지 않는 이메일입니다.");
+        if(!memberRepository.existsByEmail(email)){
+            throw new CustomException(ErrorCode.MEMBER_NOT_FOUND);
         }
 
+        Member member = memberRepository.findByEmail(email);
         // 비밀번호 검증
-        Member member = foundMember.get();
         if (!encoder.matches(pw, member.getPw())) {
-            throw new RuntimeException("잘못된 비밀번호입니다!");
+            throw new CustomException(ErrorCode.WRONG_PASSWORD);
         }
 
         // 로그인 성공
