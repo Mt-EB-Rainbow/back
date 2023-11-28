@@ -1,12 +1,8 @@
 package efub.ebmt.eeojum.domain.resume.controller;
 
 import efub.ebmt.eeojum.domain.resume.domain.ResumeStatus;
-import efub.ebmt.eeojum.domain.resume.dto.request.ResumeRequest;
-import efub.ebmt.eeojum.domain.resume.dto.request.ResumeStatusRequest;
-import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
-import efub.ebmt.eeojum.domain.resume.dto.response.ResumeDetailResponse;
-import efub.ebmt.eeojum.domain.resume.dto.response.ResumeResponse;
-import efub.ebmt.eeojum.domain.resume.dto.response.ResumesResponse;
+import efub.ebmt.eeojum.domain.resume.dto.request.*;
+import efub.ebmt.eeojum.domain.resume.dto.response.*;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -29,21 +25,18 @@ public class ResumeController {
         return new ResponseEntity<>(resumeResponse, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{resumeId}")
-    @Operation(summary = "이력서 내용 작성 API입니다.")
+    @PutMapping("/{resumeId}")
+    @Operation(summary = "이력서 제목, 자기소개, 직업, 공개 여부 수정 API입니다.")
     public ResponseEntity<ResumeResponse> resumeSave(@PathVariable Long resumeId, @RequestBody ResumeUpdateRequest resumeUpdateRequest){
         ResumeResponse resumeResponse = resumeService.modifyResume(resumeId, resumeUpdateRequest);
         return new ResponseEntity<>(resumeResponse, HttpStatus.OK);
     }
 
-    @PutMapping("/{resumeId}")
-    @Operation(summary = "이력서 상태 변경 API입니다. 이력서 상태는" +
-            "NOT_ASKED(피드백 요청하지 않은 상태), " +
-            "WAITING(피드백 대기중인 상태), " +
-            "ARRIVED(피드백 도착 후 확인하지 않은 상태)로 구분됩니다. ")
-    public ResponseEntity<ResumeResponse> resumeStatusModify(@PathVariable Long resumeId, @RequestBody ResumeStatusRequest resumeStatusRequest){
-        ResumeResponse resumeResponse = resumeService.modifyResumeStatus(resumeId, resumeStatusRequest);
-        return new ResponseEntity<>(resumeResponse, HttpStatus.OK);
+    @DeleteMapping("/{resumeId}")
+    @Operation(summary = "이력서 삭제")
+    public ResponseEntity<String> resumeDelete(@PathVariable Long resumeId){
+        resumeService.deleteResume(resumeId);
+        return new ResponseEntity<>("이력서 id" + resumeId + "삭제", HttpStatus.OK);
     }
 
     @GetMapping
@@ -72,5 +65,77 @@ public class ResumeController {
     public ResponseEntity<ResumesResponse> feedbackWaitingList(){
         ResumesResponse resumesResponse = resumeService.findResumeByStatus(ResumeStatus.WAITING);
         return new ResponseEntity<>(resumesResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/{resumeId}/award")
+    public ResponseEntity<AwardResponse> awardSave(@PathVariable Long resumeId, @RequestBody AwardRequest awardRequest){
+        AwardResponse awardResponse = resumeService.saveAward(resumeId, awardRequest);
+        return new ResponseEntity<>(awardResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/award/{awardId}")
+    public ResponseEntity<AwardResponse> awardUpdate(@PathVariable Long awardId, @RequestBody AwardRequest awardRequest){
+        AwardResponse awardResponse = resumeService.updateAward(awardId, awardRequest);
+        return new ResponseEntity<>(awardResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/award/{awardId}")
+    public ResponseEntity<String> awardDelete(@PathVariable Long awardId){
+        resumeService.deleteAward(awardId);
+        return new ResponseEntity<>("수상 삭제", HttpStatus.OK);
+    }
+
+    @PostMapping("/{resumeId}/education")
+    public ResponseEntity<EducationResponse> educationSave(@PathVariable Long resumeId, @RequestBody EducationRequest educationRequest){
+        EducationResponse educationResponse = resumeService.saveEducation(resumeId, educationRequest);
+        return new ResponseEntity<>(educationResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/education/{educationId}")
+    public ResponseEntity<EducationResponse> educationUpdate(@PathVariable Long educationId, @RequestBody EducationRequest educationRequest){
+        EducationResponse educationResponse = resumeService.updateEducation(educationId, educationRequest);
+        return new ResponseEntity<>(educationResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/education/{educationId}")
+    public ResponseEntity<String> educationDelete(@PathVariable Long educationId){
+        resumeService.deleteEducation(educationId);
+        return new ResponseEntity<>("학력 삭제", HttpStatus.OK);
+    }
+
+    @PostMapping("/{resumeId}/experience")
+    public ResponseEntity<ExperienceResponse> experienceSave(@PathVariable Long experienceId, @RequestBody ExperienceRequest experienceRequest){
+        ExperienceResponse experienceResponse = resumeService.saveExperience(experienceId, experienceRequest);
+        return new ResponseEntity<>(experienceResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/experience/{experienceId}")
+    public ResponseEntity<ExperienceResponse> experienceUpdate(@PathVariable Long experienceId, @RequestBody ExperienceRequest experienceRequest){
+        ExperienceResponse experienceResponse = resumeService.updateExperience(experienceId, experienceRequest);
+        return new ResponseEntity<>(experienceResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/experience/{experienceId}")
+    public ResponseEntity<String> experienceDelete(@PathVariable Long experienceId){
+        resumeService.deleteExperience(experienceId);
+        return new ResponseEntity<>("학력 삭제", HttpStatus.OK);
+    }
+
+    @PostMapping("/{resumeId}/language")
+    public ResponseEntity<LanguageResponse> languageSave(@PathVariable Long languageId, @RequestBody LanguageRequest languageRequest){
+        LanguageResponse languageResponse = resumeService.saveLanguage(languageId, languageRequest);
+        return new ResponseEntity<>(languageResponse, HttpStatus.OK);
+    }
+
+    @PutMapping("/language/{languageId}")
+    public ResponseEntity<LanguageResponse> languageUpdate(@PathVariable Long languageId, @RequestBody LanguageRequest languageRequest){
+        LanguageResponse languageResponse = resumeService.updateLanguage(languageId, languageRequest);
+        return new ResponseEntity<>(languageResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/language/{languageId}")
+    public ResponseEntity<String> languageDelete(@PathVariable Long languageId){
+        resumeService.deleteLanguage(languageId);
+        return new ResponseEntity<>("학력 삭제", HttpStatus.OK);
     }
 }

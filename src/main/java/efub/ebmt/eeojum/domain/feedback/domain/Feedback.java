@@ -34,12 +34,5 @@ public class Feedback extends BaseTimeEntity {
         this.content = content;
     }
 
-    public void updateFeedback(FeedbackUpdateRequest feedbackUpdateRequest){
-        this.overall = feedbackUpdateRequest.getOverall();
-        this.title = feedbackUpdateRequest.getTitle();
-        this.education = feedbackUpdateRequest.getEducation();
-        this.experience = feedbackUpdateRequest.getExperience();
-        this.language = feedbackUpdateRequest.getLanguage();
-        this.awards = feedbackUpdateRequest.getAwards();
-    }
+
 }

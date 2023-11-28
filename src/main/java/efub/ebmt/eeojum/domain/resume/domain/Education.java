@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import efub.ebmt.eeojum.domain.resume.dto.request.EducationRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,5 +48,15 @@ public class Education {
         this.name = name;
         this.major = major;
         this.degree = degree;
+    }
+
+    public Education update(EducationRequest educationRequest){
+        this.startDate = educationRequest.getStartDate();
+        this.finishDate = educationRequest.getFinishDate();
+        this.educationStatus = educationRequest.getEducationStatus();
+        this.name = educationRequest.getName();
+        this.major = educationRequest.getMajor();
+        this.degree = educationRequest.getDegree();
+        return this;
     }
 }
