@@ -5,7 +5,7 @@ import efub.ebmt.eeojum.domain.member.service.MemberService;
 import efub.ebmt.eeojum.domain.member.service.RefreshTokenService;
 import efub.ebmt.eeojum.domain.member.dto.RefreshTokenRequestDto;
 import efub.ebmt.eeojum.domain.member.dto.SignInRequestDto;
-import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.response.SignInResponseDto;
 import efub.ebmt.eeojum.domain.member.dto.SignUpRequestDto;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import io.swagger.v3.oas.annotations.Operation;

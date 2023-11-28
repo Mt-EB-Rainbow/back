@@ -28,18 +28,19 @@ public class Member {
     @Column(nullable = false, length = 120)
     private String pw;
 
-    @Column(name = "is_mentor")
+    @Column(nullable = false, name = "is_mentor")
     private Boolean isMentor;
 
     public Member update(String name) {
         this.name = name;
         return this;
     }
+
     @Builder
-    public Member(String name, String email, String pw, String nickname, Date birth, boolean isMentor) {
+    public Member(String name, String email, String pw, String nickname, Date birth, Boolean isMentor) {
         this.name = name;
         this.email = email;
         this.pw = pw;
-        this.isMentor = false;
+        this.isMentor = isMentor;
     }
 }

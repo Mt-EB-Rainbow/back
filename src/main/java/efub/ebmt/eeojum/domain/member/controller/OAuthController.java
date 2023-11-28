@@ -1,21 +1,12 @@
 package efub.ebmt.eeojum.domain.member.controller;
 
-import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
 import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.service.OAuthService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 @RestController
 @RequiredArgsConstructor

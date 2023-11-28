@@ -1,34 +1,17 @@
 package efub.ebmt.eeojum.domain.member.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import efub.ebmt.eeojum.domain.member.domain.Member;
-import efub.ebmt.eeojum.domain.member.dto.google.GoogleOAuthTokenDto;
-import efub.ebmt.eeojum.domain.member.dto.google.GoogleUserInfoDto;
-import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoOAuthTokenDto;
-import efub.ebmt.eeojum.domain.member.dto.OAuthResponseDto;
-import efub.ebmt.eeojum.domain.member.dto.kakao.KakaoUserInfoDto;
 import efub.ebmt.eeojum.domain.member.oauth.GoogleOAuth;
 import efub.ebmt.eeojum.domain.member.oauth.KakaoOAuth;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
-import efub.ebmt.eeojum.global.config.OAuthPlatform;
 import efub.ebmt.eeojum.global.config.RedisDao;
 import efub.ebmt.eeojum.global.config.TokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

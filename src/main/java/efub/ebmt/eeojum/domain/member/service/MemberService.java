@@ -2,7 +2,7 @@ package efub.ebmt.eeojum.domain.member.service;
 
 import efub.ebmt.eeojum.domain.member.domain.Member;
 import efub.ebmt.eeojum.domain.member.domain.RefreshToken;
-import efub.ebmt.eeojum.domain.member.dto.SignInResponseDto;
+import efub.ebmt.eeojum.domain.member.dto.response.SignInResponseDto;
 import efub.ebmt.eeojum.domain.member.dto.SignUpRequestDto;
 import efub.ebmt.eeojum.domain.member.repository.MemberRepository;
 import efub.ebmt.eeojum.global.config.TokenProvider;
