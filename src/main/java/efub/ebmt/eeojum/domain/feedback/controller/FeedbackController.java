@@ -3,6 +3,7 @@ package efub.ebmt.eeojum.domain.feedback.controller;
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackRequest;
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackUpdateRequest;
 import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbackResponse;
+import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbacksResponse;
 import efub.ebmt.eeojum.domain.feedback.service.FeedbackService;
 import efub.ebmt.eeojum.domain.resume.service.ResumeService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,10 +28,10 @@ public class FeedbackController {
         return new ResponseEntity<>(feedbackResponse, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{feedbackId}")
-    @Operation(summary = "피드백 수정 API입니다. ")
-    public ResponseEntity<FeedbackResponse> feedbackSave(@PathVariable Long feedbackId, @RequestBody FeedbackUpdateRequest feedbackUpdateRequest){
-        FeedbackResponse feedbackResponse = feedbackService.modifyFeedback(feedbackId, feedbackUpdateRequest);
-        return new ResponseEntity<>(feedbackResponse, HttpStatus.CREATED);
+
+    @GetMapping("/{resumeId}")
+    @Operation(summary = "피드백 조회")
+    public ResponseEntity<FeedbacksResponse> getFeedback(@PathVariable Long resumeId){
+        return new ResponseEntity<>(feedbackService.feedbackList(resumeId), HttpStatus.OK);
     }
 }

@@ -2,8 +2,8 @@ package efub.ebmt.eeojum.domain.feedback.service;
 
 import efub.ebmt.eeojum.domain.feedback.domain.Feedback;
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackRequest;
-import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackUpdateRequest;
 import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbackResponse;
+import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbacksResponse;
 import efub.ebmt.eeojum.domain.feedback.repository.FeedbackRepository;
 import efub.ebmt.eeojum.domain.resume.domain.Resume;
 import efub.ebmt.eeojum.domain.resume.domain.ResumeStatus;
@@ -13,6 +13,8 @@ import efub.ebmt.eeojum.global.exception.ErrorCode;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,9 +30,9 @@ public class FeedbackService {
         return new FeedbackResponse(feedback);
     }
 
-    public FeedbackResponse modifyFeedback(Long feedbackId, FeedbackUpdateRequest feedbackUpdateRequest){
-        Feedback feedback = feedbackRepository.findById(feedbackId).orElseThrow(() -> new CustomException(ErrorCode.FEEDBACK_NOT_FOUND));
-        feedback.updateFeedback(feedbackUpdateRequest);
-        return new FeedbackResponse(feedback);
+    public FeedbacksResponse feedbackList(Long resumeId){
+        return new FeedbacksResponse(feedbackRepository.findByResumeId(resumeId).stream()
+                .map(FeedbackResponse::new)
+                .collect(Collectors.toList()));
     }
 }

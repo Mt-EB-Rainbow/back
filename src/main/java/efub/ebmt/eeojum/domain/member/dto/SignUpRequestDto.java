@@ -9,6 +9,5 @@ public class SignUpRequestDto {
     private String name;
     private String email;
     private String pw;
-    private String nickname;
-    private Date birth;
+    private Boolean isMentor;
 }

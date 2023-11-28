@@ -44,73 +44,73 @@ public class OAuthService {
     private final RedisDao redisDao;
     UsernamePasswordAuthenticationToken authenticationToken = null;
 
-    private ResponseEntity<OAuthResponseDto> SignInByOAuth(String email, OAuthPlatform platform) {
-
-        if (platform.equals(OAuthPlatform.KAKAO)) {
-            authenticationToken = new UsernamePasswordAuthenticationToken(email, "kakao");
-        } else {
-            authenticationToken = new UsernamePasswordAuthenticationToken(email, "google");
-        }
-
-        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        // memberId 검색
-        Optional<Member> memberOptional = memberRepository.findMemberByEmail(email);
-        if (memberOptional.isEmpty()) {
-            throw new RuntimeException("멤버 정보를 찾을 수 없습니다!");
-        }
-        Long memberId = memberOptional.get().getMemberId();
-
-        // memberId 기반으로 토큰 생성
-        String atk = tokenProvider.createAccessToken(memberId);
-        String rtk = tokenProvider.createRefreshToken(memberId);
-
-        redisDao.setValues(email, rtk, Duration.ofDays(14));
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authorization", "Bearer " + atk);
-
-        return new ResponseEntity<>(OAuthResponseDto.response(
-                email, atk, rtk
-        ), HttpStatus.OK);
-    }
+//    private ResponseEntity<OAuthResponseDto> SignInByOAuth(String email, OAuthPlatform platform) {
+//
+//        if (platform.equals(OAuthPlatform.KAKAO)) {
+//            authenticationToken = new UsernamePasswordAuthenticationToken(email, "kakao");
+//        } else {
+//            authenticationToken = new UsernamePasswordAuthenticationToken(email, "google");
+//        }
+//
+//        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//
+//        // memberId 검색
+//        Optional<Member> memberOptional = memberRepository.findMemberByEmail(email);
+//        if (memberOptional.isEmpty()) {
+//            throw new RuntimeException("멤버 정보를 찾을 수 없습니다!");
+//        }
+//        Long memberId = memberOptional.get().getMemberId();
+//
+//        // memberId 기반으로 토큰 생성
+//        String atk = tokenProvider.createAccessToken(memberId);
+//        String rtk = tokenProvider.createRefreshToken(memberId);
+//
+//        redisDao.setValues(email, rtk, Duration.ofDays(14));
+//
+//        HttpHeaders httpHeaders = new HttpHeaders();
+//        httpHeaders.add("Authorization", "Bearer " + atk);
+//
+//        return new ResponseEntity<>(OAuthResponseDto.response(
+//                email, atk, rtk
+//        ), HttpStatus.OK);
+//    }
 
     // 카카오 로그인 서비스
-    @Transactional
-    public ResponseEntity<OAuthResponseDto> kakaoSignIn(String code) throws IOException {
-        KakaoUserInfoDto kakaoUser = getKakaoUserInfoDto(code);
-        String email = kakaoUser.getKakaoAccount().getEmail();
-
-        // 첫 로그인시 사용자 정보를 보내줌
-        if (!memberRepository.existsByEmail(email)) {
-            return new ResponseEntity<>(OAuthResponseDto.response(
-                    email, null, null
-            ), HttpStatus.OK);
-        }
-        // 이메일이 존재할시 로그인
-        return SignInByOAuth(email, OAuthPlatform.KAKAO);
-    }
+//    @Transactional
+//    public ResponseEntity<OAuthResponseDto> kakaoSignIn(String code) throws IOException {
+//        KakaoUserInfoDto kakaoUser = getKakaoUserInfoDto(code);
+//        String email = kakaoUser.getKakaoAccount().getEmail();
+//
+//        // 첫 로그인시 사용자 정보를 보내줌
+//        if (!memberRepository.existsByEmail(email)) {
+//            return new ResponseEntity<>(OAuthResponseDto.response(
+//                    email, null, null
+//            ), HttpStatus.OK);
+//        }
+//        // 이메일이 존재할시 로그인
+//        return SignInByOAuth(email, OAuthPlatform.KAKAO);
+//    }
 
     // 구글 로그인 서비스
-    @Transactional
-    public ResponseEntity<OAuthResponseDto> googleSignIn(String code) throws IOException {
-        GoogleUserInfoDto googleUser = getGoogleUserInfoDto(code);
-        String email = googleUser.getEmail();
-        String name = googleUser.getName();
-
-        // 첫 로그인시 사용자 정보를 보내줌
-        if (!memberRepository.existsByEmail(email)) {
-            return new ResponseEntity<>(OAuthResponseDto.response(
-                    email, null, null
-            ), HttpStatus.OK);
-        }
-        // 이메일이 존재할시 로그인
-        return SignInByOAuth(email, OAuthPlatform.GOOGLE);
-    }
+//    @Transactional
+//    public ResponseEntity<OAuthResponseDto> googleSignIn(String code) throws IOException {
+//        GoogleUserInfoDto googleUser = getGoogleUserInfoDto(code);
+//        String email = googleUser.getEmail();
+//        String name = googleUser.getName();
+//
+//        // 첫 로그인시 사용자 정보를 보내줌
+//        if (!memberRepository.existsByEmail(email)) {
+//            return new ResponseEntity<>(OAuthResponseDto.response(
+//                    email, null, null
+//            ), HttpStatus.OK);
+//        }
+//        // 이메일이 존재할시 로그인
+//        return SignInByOAuth(email, OAuthPlatform.GOOGLE);
+//    }
 
     // 소셜 로그인 서비스
-    @Transactional
+//    @Transactional
 //    public SignInResponseDto signInByOAuth(String code, OAuthPlatform platform) {
 //        // 요청된 로그인 플랫폼 확인 후 소셜 로그인 진행
 //        Optional<Member> memberEntityOptional = getOptionalSocialUserEntity(code, platform);
@@ -133,13 +133,13 @@ public class OAuthService {
 //    }
 
     // 카카오 유저 정보 가져오기
-    private KakaoUserInfoDto getKakaoUserInfoDto(String code) throws JsonProcessingException {
-        ResponseEntity<String> accessTokenResponse = kakaoOAuth.requestAccessToken(code);
-        KakaoOAuthTokenDto oAuthToken = kakaoOAuth.getAccessToken(accessTokenResponse);
-        ResponseEntity<String> userInfoResponse = kakaoOAuth.requestUserInfo(oAuthToken);
-        KakaoUserInfoDto kakaoUser = kakaoOAuth.getUserInfo(userInfoResponse);
-        return kakaoUser;
-    }
+//    private KakaoUserInfoDto getKakaoUserInfoDto(String code) throws JsonProcessingException {
+//        ResponseEntity<String> accessTokenResponse = kakaoOAuth.requestAccessToken(code);
+//        KakaoOAuthTokenDto oAuthToken = kakaoOAuth.getAccessToken(accessTokenResponse);
+//        ResponseEntity<String> userInfoResponse = kakaoOAuth.requestUserInfo(oAuthToken);
+//        KakaoUserInfoDto kakaoUser = kakaoOAuth.getUserInfo(userInfoResponse);
+//        return kakaoUser;
+//    }
 
     // 소셜 로그인 서비스
 //    private Optional<Member> getOptionalSocialUserEntity(String code, OAuthPlatform platform) {
@@ -170,11 +170,11 @@ public class OAuthService {
 //                .build();
 //    }
 
-    private GoogleUserInfoDto getGoogleUserInfoDto(String code) throws JsonProcessingException {
-        ResponseEntity<String> accessTokenResponse = googleOAuth.requestAccessToken(code);
-        GoogleOAuthTokenDto oAuthToken = googleOAuth.getAccessToken(accessTokenResponse);
-        ResponseEntity<String> userInfoResponse = googleOAuth.requestUserInfo(oAuthToken);
-        GoogleUserInfoDto googleUser = googleOAuth.getUserInfo(userInfoResponse);
-        return googleUser;
-    }
+//    private GoogleUserInfoDto getGoogleUserInfoDto(String code) throws JsonProcessingException {
+//        ResponseEntity<String> accessTokenResponse = googleOAuth.requestAccessToken(code);
+//        GoogleOAuthTokenDto oAuthToken = googleOAuth.getAccessToken(accessTokenResponse);
+//        ResponseEntity<String> userInfoResponse = googleOAuth.requestUserInfo(oAuthToken);
+//        GoogleUserInfoDto googleUser = googleOAuth.getUserInfo(userInfoResponse);
+//        return googleUser;
+//    }
 }

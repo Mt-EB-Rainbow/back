@@ -25,33 +25,13 @@ public class Feedback extends BaseTimeEntity {
     private Long resumeId;
 
     @Column
-    private String overall;
-
-    @Column
-    private String title;
-
-    @Column
-    private String education;
-
-    @Column
-    private String experience;
-
-    @Column
-    private String language;
-
-    @Column
-    private String awards;
+    private String content;
 
     @Builder
-    public Feedback(Long memberId, Long resumeId, String overall, String title, String education, String experience, String language, String awards){
+    public Feedback(Long memberId, Long resumeId, String content){
         this.memberId = memberId;
         this.resumeId = resumeId;
-        this.overall = overall;
-        this.title = title;
-        this.education = education;
-        this.experience = experience;
-        this.language = language;
-        this.awards = awards;
+        this.content = content;
     }
 
     public void updateFeedback(FeedbackUpdateRequest feedbackUpdateRequest){

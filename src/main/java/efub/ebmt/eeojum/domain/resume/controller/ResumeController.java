@@ -60,7 +60,7 @@ public class ResumeController {
         return new ResponseEntity<>(resumeDetailResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/{memberId}")
+    @GetMapping("/member/{memberId}")
     @Operation(summary = "이력서 멤버 별 조회 API입니다.")
     public ResponseEntity<ResumesResponse> resumeListByMember(@PathVariable Long memberId){
         ResumesResponse resumesResponse = resumeService.findResumeByMember(memberId);
