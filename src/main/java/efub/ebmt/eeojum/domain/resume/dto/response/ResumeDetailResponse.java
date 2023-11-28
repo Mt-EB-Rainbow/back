@@ -13,6 +13,7 @@ public class ResumeDetailResponse {
     private String title;
     private String introduction;
     private Boolean isPrivate;
+    private String jobName;
     private ResumeStatus resumeStatus;
     private List<Education> educations;
     private List<Experience> experiences;
