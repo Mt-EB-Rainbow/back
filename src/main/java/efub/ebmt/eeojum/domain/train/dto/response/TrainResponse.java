@@ -16,19 +16,19 @@ public class TrainResponse {
     private String courseName;
     private String fileUrl;
     private String contentsName;
-    private String applyUrl;
+    private String detailUrl;
 
     public TrainResponse(XmlResponse.ResponseBody.List.Data data){
         this.courseName = data.getCourseName();
         this.fileUrl = data.getFileUrl();
         this.contentsName = data.getContentsName();
-        this.applyUrl = data.getApplyUrl();
+        this.detailUrl = data.getApplyUrl();
     }
 
     public TrainResponse(Train education){
         this.courseName = education.getCourseName();
         this.fileUrl = education.getFileUrl();
         this.contentsName = education.getContentsName();
-        this.applyUrl = education.getApplyUrl();
+        this.detailUrl = education.getApplyUrl();
     }
 }
