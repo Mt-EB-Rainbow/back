@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import efub.ebmt.eeojum.domain.resume.dto.request.LanguageRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,5 +40,13 @@ public class Language {
         this.language = language;
         this.testName = testName;
         this.score = score;
+    }
+
+    public Language update(LanguageRequest languageRequest){
+        this.gainedDate = languageRequest.getGainedDate();
+        this.language = languageRequest.getLanguage();
+        this.testName = languageRequest.getTestName();
+        this.score = languageRequest.getScore();
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import efub.ebmt.eeojum.domain.resume.dto.request.AwardRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,6 +40,14 @@ public class Award {
         this.finishDate = finishDate;
         this.activity = activity;
         this.content = content;
+    }
+
+    public Award update(AwardRequest awardRequest){
+        this.startDate = awardRequest.getStartDate();
+        this.finishDate = awardRequest.getFinishDate();
+        this.activity = awardRequest.getActivity();
+        this.content = awardRequest.getContent();
+        return this;
     }
 
 }

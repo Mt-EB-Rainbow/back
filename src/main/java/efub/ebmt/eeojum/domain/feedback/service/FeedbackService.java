@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.feedback.service;
 
+import efub.ebmt.eeojum.domain.feedback.domain.Feedback;
 import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackRequest;
 import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbackResponse;
 import efub.ebmt.eeojum.domain.feedback.dto.response.FeedbacksResponse;
@@ -22,10 +23,11 @@ public class FeedbackService {
     private final FeedbackRepository feedbackRepository;
     private final ResumeRepository resumeRepository;
 
-    public void addFeedback(FeedbackRequest feedbackRequest){
-        feedbackRepository.save(feedbackRequest.of());
+    public FeedbackResponse addFeedback(FeedbackRequest feedbackRequest){
         Resume resume = resumeRepository.findById(feedbackRequest.getResumeId()).orElseThrow(() -> new CustomException(ErrorCode.RESUME_NOT_FOUND));
+        Feedback feedback = feedbackRepository.save(feedbackRequest.of());
         resume.updateResumeStatus(ResumeStatus.ARRIVED);
+        return new FeedbackResponse(feedback);
     }
 
     public FeedbacksResponse feedbackList(Long resumeId){
