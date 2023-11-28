@@ -12,6 +12,7 @@ import java.util.List;
 public class ResumeDetailResponse {
     private String title;
     private String introduction;
+    private Boolean isPrivate;
     private ResumeStatus resumeStatus;
     private List<Education> educations;
     private List<Experience> experiences;
@@ -22,6 +23,7 @@ public class ResumeDetailResponse {
     public ResumeDetailResponse(Resume resume, List<Education> educations, List<Experience> experiences, List<Language> languages, List<Award> awards){
         this.title = resume.getTitle();
         this.introduction = resume.getIntroduction();
+        this.isPrivate = resume.getIsPrivate();
         this.resumeStatus = resume.getResumeStatus();
         this.educations = educations;
         this.experiences = experiences;
