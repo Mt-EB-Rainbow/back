@@ -17,6 +17,7 @@ public class ResumeResponse {
     private ResumeStatus resumeStatus;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime modifiedAt;
+    private Boolean isSecret;
 
     public ResumeResponse(Resume resume) {
         this.resumeId = resume.getResumeId();
@@ -24,5 +25,6 @@ public class ResumeResponse {
         this.introduction = resume.getIntroduction();
         this.resumeStatus = resume.getResumeStatus();
         this.modifiedAt = resume.getModifiedAt();
+        this.isSecret = resume.getIsSecrete();
     }
 }
