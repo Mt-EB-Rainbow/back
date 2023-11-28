@@ -11,8 +11,10 @@ import java.util.List;
 public class ResumeUpdateRequest {
     private String title;
     private String introduction;
-    private List<EducationRequest> educations;
-    private List<ExperienceRequest> experiences;
-    private List<LanguageRequest> languages;
-    private List<AwardRequest> awards;
+    private Boolean isPrivate;
+    private String jobName;
+    //private List<EducationRequest> educations;
+    //private List<ExperienceRequest> experiences;
+    //private List<LanguageRequest> languages;
+    //private List<AwardRequest> awards;
 }

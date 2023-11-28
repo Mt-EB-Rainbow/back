@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import efub.ebmt.eeojum.domain.resume.dto.request.ExperienceRequest;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -43,5 +44,14 @@ public class Experience {
         this.isPresent = isPresent;
         this.department = department;
         this.position = position;
+    }
+
+    public Experience update(ExperienceRequest experienceRequest){
+        this.startDate = experienceRequest.getStartDate();
+        this.finishDate = experienceRequest.getFinishDate();
+        this.isPresent = experienceRequest.getIsPresent();
+        this.department = experienceRequest.getDepartment();
+        this.position = experienceRequest.getPosition();
+        return this;
     }
 }

@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.feedback.domain;
 
+import efub.ebmt.eeojum.domain.feedback.dto.request.FeedbackUpdateRequest;
 import efub.ebmt.eeojum.global.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -32,4 +33,6 @@ public class Feedback extends BaseTimeEntity {
         this.resumeId = resumeId;
         this.content = content;
     }
+
+
 }

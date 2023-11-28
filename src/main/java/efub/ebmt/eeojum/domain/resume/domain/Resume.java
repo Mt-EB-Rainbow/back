@@ -1,5 +1,6 @@
 package efub.ebmt.eeojum.domain.resume.domain;
 
+import efub.ebmt.eeojum.domain.resume.dto.request.ResumeUpdateRequest;
 import efub.ebmt.eeojum.global.common.BaseTimeEntity;
 import lombok.*;
 
@@ -26,17 +27,27 @@ public class Resume extends BaseTimeEntity {
     @Column
     private String introduction;
 
+    @Column
+    @Builder.Default
+    private Boolean isPrivate = false;
+
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "varchar(255) default 'NOT_ASKED'")
     @Builder.Default
     private ResumeStatus resumeStatus = ResumeStatus.NOT_ASKED;
 
-    public void updateResume(String title, String introduction){
-        this.title = title;
-        this.introduction = introduction;
-    }
+    @Column
+    private String jobName;
 
     public void updateResumeStatus(ResumeStatus resumeStatus){
         this.resumeStatus = resumeStatus;
     }
+
+    public Resume updateResume(ResumeUpdateRequest resumeUpdateRequest){
+        this.title = resumeUpdateRequest.getTitle();
+        this.isPrivate = resumeUpdateRequest.getIsPrivate();
+        this.jobName = resumeUpdateRequest.getJobName();
+        return this;
+    }
+
 }

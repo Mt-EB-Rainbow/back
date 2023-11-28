@@ -13,16 +13,22 @@ import java.time.LocalDateTime;
 public class ResumeResponse {
     private Long resumeId;
     private String title;
+    private String jobName;
     private String introduction;
     private ResumeStatus resumeStatus;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime modifiedAt;
+    private Boolean isPrivate;
+    Long feedbackCnt;
 
-    public ResumeResponse(Resume resume) {
+    public ResumeResponse(Resume resume, Long feedbackCnt) {
         this.resumeId = resume.getResumeId();
         this.title = resume.getTitle();
+        this.jobName = resume.getJobName();
         this.introduction = resume.getIntroduction();
         this.resumeStatus = resume.getResumeStatus();
         this.modifiedAt = resume.getModifiedAt();
+        this.isPrivate = resume.getIsPrivate();
+        this.feedbackCnt = feedbackCnt;
     }
 }
