@@ -33,7 +33,6 @@ public class WebDriverUtil {
         chromeOptions.setCapability("ignoreProtectedModeSettings", true);
         chromeOptions.addArguments("--disable-popup-blocking"); //팝업 X
         chromeOptions.addArguments("--blink-settings=imagesEnabled=false"); //이미지 다운 X
-        chromeOptions.setBrowserVersion("119.0.6045.159");
         WebDriver driver = new ChromeDriver(chromeOptions);
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 

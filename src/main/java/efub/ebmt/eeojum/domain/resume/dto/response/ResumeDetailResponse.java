@@ -24,6 +24,7 @@ public class ResumeDetailResponse {
     public ResumeDetailResponse(Resume resume, List<Education> educations, List<Experience> experiences, List<Language> languages, List<Award> awards){
         this.title = resume.getTitle();
         this.introduction = resume.getIntroduction();
+        this.jobName = resume.getJobName();
         this.isPrivate = resume.getIsPrivate();
         this.resumeStatus = resume.getResumeStatus();
         this.educations = educations;
