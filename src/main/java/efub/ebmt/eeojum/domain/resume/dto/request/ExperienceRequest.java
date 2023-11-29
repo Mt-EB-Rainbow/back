@@ -5,13 +5,14 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ExperienceRequest {
-    private LocalDateTime startDate;
-    private LocalDateTime finishDate;
+    private LocalDate startDate;
+    private LocalDate finishDate;
     private Boolean isPresent;
     private String department;
     private String position;

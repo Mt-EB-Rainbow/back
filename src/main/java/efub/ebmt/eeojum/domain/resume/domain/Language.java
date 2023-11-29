@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,7 +23,7 @@ public class Language {
     private Long resumeId;
 
     @Column(nullable = false)
-    private LocalDateTime gainedDate;
+    private LocalDate gainedDate;
 
     @Column(nullable = false)
     private String language;
@@ -34,7 +35,7 @@ public class Language {
     private String score;
 
     @Builder
-    public Language(Long resumeId, LocalDateTime startDate, LocalDateTime gainedDate, String language, String testName, String score){
+    public Language(Long resumeId, LocalDate startDate, LocalDate gainedDate, String language, String testName, String score){
         this.resumeId = resumeId;
         this.gainedDate = gainedDate;
         this.language = language;

@@ -5,12 +5,13 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class LanguageRequest {
-    private LocalDateTime gainedDate;
+    private LocalDate gainedDate;
     private String language;
     private String testName;
     private String score;

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,10 +23,10 @@ public class Experience {
     private Long resumeId;
 
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column
-    private LocalDateTime finishDate;
+    private LocalDate finishDate;
 
     @Column(nullable = false)
     private Boolean isPresent;
@@ -37,7 +38,7 @@ public class Experience {
     private String position;
 
     @Builder
-    public Experience(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, Boolean isPresent, String department, String position){
+    public Experience(Long resumeId, LocalDate startDate, LocalDate finishDate, Boolean isPresent, String department, String position){
         this.resumeId = resumeId;
         this.startDate = startDate;
         this.finishDate = finishDate;

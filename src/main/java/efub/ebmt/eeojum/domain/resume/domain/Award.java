@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,10 +23,10 @@ public class Award {
     private Long resumeId;
 
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column
-    private LocalDateTime finishDate;
+    private LocalDate finishDate;
 
     @Column
     private String activity;
@@ -34,7 +35,7 @@ public class Award {
     private String content;
 
     @Builder
-    public Award(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, String activity, String content){
+    public Award(Long resumeId, LocalDate startDate, LocalDate finishDate, String activity, String content){
         this.resumeId = resumeId;
         this.startDate = startDate;
         this.finishDate = finishDate;

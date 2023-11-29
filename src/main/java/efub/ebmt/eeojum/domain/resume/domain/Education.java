@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -22,10 +23,10 @@ public class Education {
     private Long resumeId;
 
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private LocalDate startDate;
 
     @Column
-    private LocalDateTime finishDate;
+    private LocalDate finishDate;
 
     @Enumerated(EnumType.STRING)
     private EducationStatus educationStatus;
@@ -40,7 +41,7 @@ public class Education {
     private String degree;
 
     @Builder
-    public Education(Long resumeId, LocalDateTime startDate, LocalDateTime finishDate, EducationStatus educationStatus, String name, String major, String degree){
+    public Education(Long resumeId, LocalDate startDate, LocalDate finishDate, EducationStatus educationStatus, String name, String major, String degree){
         this.resumeId = resumeId;
         this.startDate = startDate;
         this.finishDate = finishDate;

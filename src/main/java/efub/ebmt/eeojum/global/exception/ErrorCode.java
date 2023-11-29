@@ -23,7 +23,7 @@ public enum ErrorCode {
     EXPERIENCE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 경험입니다."),
     LANGUAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 어학입니다."),
 
-
+    PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "존재하지 않는 페이지입니다."),
     ;
 
     private final HttpStatus status;

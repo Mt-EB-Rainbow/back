@@ -65,6 +65,10 @@ public class NurtureService {
             //첫 번째 페이지 아니라면 해당 페이지 번호로 넘어감
             //TODO: 10페이지 넘어가는 경우 적용
             if(!Objects.equals(nurtureRequest.getPageNum(), "1")){
+                if(Long.parseLong(nurtureRequest.getPageNum()) > pageCnt)
+                    throw new CustomException(ErrorCode.PAGE_NOT_FOUND);
+                if(Long.parseLong(nurtureRequest.getPageNum()) > 10)
+                    driver.findElement(By.xpath("//*[@id=\"contents\"]/div[2]/div[2]/a[12]")).click();
                 driver.findElement(By.linkText(nurtureRequest.getPageNum())).click();
             }
 
