@@ -96,9 +96,9 @@ public class ResumeService {
     }
 
     public AwardResponse updateAward(Long awardId, AwardRequest awardRequest){
-        return new AwardResponse(awardRepository.findById(awardId)
+        return new AwardResponse(awardRepository.save(awardRepository.findById(awardId)
                 .orElseThrow(() -> new CustomException(ErrorCode.AWARD_NOT_FOUND))
-                .update(awardRequest));
+                .update(awardRequest)));
     }
 
     public void deleteAward(Long awardId){
@@ -111,9 +111,9 @@ public class ResumeService {
     }
 
     public EducationResponse updateEducation(Long educationId, EducationRequest educationRequest){
-        return new EducationResponse(educationRepository.findById(educationId)
+        return new EducationResponse(educationRepository.save(educationRepository.findById(educationId)
                 .orElseThrow(() -> new CustomException(ErrorCode.EDUCATION_NOT_FOUND))
-                .update(educationRequest));
+                .update(educationRequest)));
     }
 
     public void deleteEducation(Long educationId){
@@ -126,9 +126,9 @@ public class ResumeService {
     }
 
     public ExperienceResponse updateExperience(Long experienceId, ExperienceRequest experienceRequest){
-        return new ExperienceResponse(experienceRepository.findById(experienceId)
+        return new ExperienceResponse(experienceRepository.save(experienceRepository.findById(experienceId)
                 .orElseThrow(() -> new CustomException(ErrorCode.EXPERIENCE_NOT_FOUND))
-                .update(experienceRequest));
+                .update(experienceRequest)));
     }
 
     public void deleteExperience(Long experienceId){
@@ -141,9 +141,9 @@ public class ResumeService {
     }
 
     public LanguageResponse updateLanguage(Long languageId, LanguageRequest languageRequest){
-        return new LanguageResponse(languageRepository.findById(languageId)
+        return new LanguageResponse(languageRepository.save(languageRepository.findById(languageId)
                 .orElseThrow(() -> new CustomException(ErrorCode.EXPERIENCE_NOT_FOUND))
-                .update(languageRequest));
+                .update(languageRequest)));
     }
 
     public void deleteLanguage(Long languageId){
