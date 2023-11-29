@@ -147,7 +147,7 @@ public class ResumeService {
     }
 
     public void deleteLanguage(Long languageId){
-        experienceRepository.delete(experienceRepository.findById(languageId)
+        languageRepository.delete(languageRepository.findById(languageId)
                 .orElseThrow(() -> new CustomException(ErrorCode.EXPERIENCE_NOT_FOUND)));
     }
 }
