@@ -104,8 +104,8 @@ public class ResumeController {
     }
 
     @PostMapping("/{resumeId}/experience")
-    public ResponseEntity<ExperienceResponse> experienceSave(@PathVariable Long experienceId, @RequestBody ExperienceRequest experienceRequest){
-        ExperienceResponse experienceResponse = resumeService.saveExperience(experienceId, experienceRequest);
+    public ResponseEntity<ExperienceResponse> experienceSave(@PathVariable Long resumeId, @RequestBody ExperienceRequest experienceRequest){
+        ExperienceResponse experienceResponse = resumeService.saveExperience(resumeId, experienceRequest);
         return new ResponseEntity<>(experienceResponse, HttpStatus.OK);
     }
 
@@ -122,8 +122,8 @@ public class ResumeController {
     }
 
     @PostMapping("/{resumeId}/language")
-    public ResponseEntity<LanguageResponse> languageSave(@PathVariable Long languageId, @RequestBody LanguageRequest languageRequest){
-        LanguageResponse languageResponse = resumeService.saveLanguage(languageId, languageRequest);
+    public ResponseEntity<LanguageResponse> languageSave(@PathVariable Long resumeId, @RequestBody LanguageRequest languageRequest){
+        LanguageResponse languageResponse = resumeService.saveLanguage(resumeId, languageRequest);
         return new ResponseEntity<>(languageResponse, HttpStatus.OK);
     }
 
