@@ -12,12 +12,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class FeedbackResponse {
     private Long feedbackId;
+    private String mentorName;
     private String content;
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime createdAt;
 
-    public FeedbackResponse(Feedback feedback) {
+    public FeedbackResponse(Feedback feedback, String mentorName) {
         this.feedbackId = feedback.getFeedbackId();
+        this.mentorName = mentorName;
         this.content = feedback.getContent();
         this.createdAt = feedback.getCreatedAt();
     }
