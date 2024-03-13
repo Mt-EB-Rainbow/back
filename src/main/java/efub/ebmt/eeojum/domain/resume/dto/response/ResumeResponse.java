@@ -3,13 +3,16 @@ package efub.ebmt.eeojum.domain.resume.dto.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import efub.ebmt.eeojum.domain.resume.domain.Resume;
 import efub.ebmt.eeojum.domain.resume.domain.ResumeStatus;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class ResumeResponse {
     private Long resumeId;
     private String title;
@@ -19,7 +22,7 @@ public class ResumeResponse {
     @JsonFormat(pattern = "yyyy년 MM월 dd일 HH:mm")
     private LocalDateTime modifiedAt;
     private Boolean isPrivate;
-    Long feedbackCnt;
+    private Long feedbackCnt;
 
     public ResumeResponse(Resume resume, Long feedbackCnt) {
         this.resumeId = resume.getResumeId();
